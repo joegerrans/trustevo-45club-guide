@@ -1689,14 +1689,37 @@
         .meta-banner strong { color: var(--navy); }
         .meta-banner-sep { color: var(--border-subtle); }
 
-        /* Print */
-        @media print {
-            .topnav, .sidebar, .hero-scroll-hint, .topnav-toc-toggle, .sidebar-backdrop, .cta-panel { display: none; }
-            .shell { grid-template-columns: 1fr; }
-            body { background: white; color: #000; }
-            .chapter { page-break-before: always; }
+
+        /* -----------------------------------------------------------
+           SAVE AS PDF button
+           ----------------------------------------------------------- */
+        .topnav-actions { display: flex; align-items: center; gap: 10px; }
+        .pdf-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--teal); color: var(--navy);
+            border: 1px solid var(--teal);
+            padding: 8px 14px; border-radius: var(--radius-sm);
+            font-family: var(--font-body); font-size: 13px; font-weight: 600;
+            cursor: pointer; text-decoration: none; line-height: 1.2;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: rgba(19, 194, 155, 0.2);
+            touch-action: manipulation;
         }
-    
+        .pdf-btn:hover { background: var(--teal-light); border-color: var(--teal-light); color: var(--navy); }
+        .pdf-btn svg { pointer-events: none; flex-shrink: 0; }
+        .pdf-btn[disabled] { opacity: 0.7; cursor: progress; }
+        .pdf-btn-lg { padding: 16px 28px; font-size: 15px; background: transparent; color: var(--white); border-color: rgba(255,255,255,0.25); }
+        .pdf-btn-lg:hover { background: rgba(255,255,255,0.05); border-color: var(--teal); color: var(--teal-light); }
+        @media (max-width: 640px) {
+            .pdf-btn .pdf-label-long { display: none; }
+            .pdf-btn { padding: 7px 11px; font-size: 12px; }
+            .pdf-btn-lg { padding: 14px 22px; font-size: 14px; }
+            .pdf-btn-lg .pdf-label-long { display: inline; }
+        }
+        @media (min-width: 641px) { .pdf-btn .pdf-label-short { display: none; } }
+        .print-only, .pdf-only { display: none; }
+
+
 /* ---- Chapter figures ---- */
 .chapter-figure{margin:32px 0 36px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);}
 .chapter-figure img{display:block;width:100%;height:auto;aspect-ratio:16/7;object-fit:cover;}
@@ -1769,6 +1792,7 @@
 .tp-card .dd{font-family:var(--font-body);font-size:.86rem;line-height:1.6;color:rgba(255,255,255,.72);}
 @media (max-width:640px){.tline{grid-template-columns:1fr;gap:12px;}}
 
+
     </style>
 </head>
 <body>
@@ -1804,10 +1828,13 @@
     <a href="#top" class="topnav-brand">
         <div class="topnav-word">Trust<span class="evo">Evo</span></div>
     </a>
+    <div class="topnav-actions">
+    <a class="pdf-btn" href="The-45-Club-2026-27.pdf?v=202610281521" download="The-45-Club-2026-27.pdf" aria-label="Download this guide as a PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg><span class="pdf-label-long">Download PDF</span><span class="pdf-label-short">PDF</span></a>
     <button class="topnav-toc-toggle" id="tocToggle" type="button" aria-label="Open contents" aria-expanded="false" onclick="TE_toggleSidebar(event)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="14" y2="18"/></svg>
         <span class="toggle-label">Contents</span>
     </button>
+    </div>
     <div class="topnav-progress" id="progressBar"></div>
 </nav>
 
@@ -1833,6 +1860,7 @@
 <div class="mobile-toc" id="mobileToc" aria-label="Contents">
     <div class="mobile-toc-header">Contents</div>
     <ul class="mobile-toc-list">
+        <li><a href="#budget-2026" onclick="TE_closeSidebar()">Budget 2026: What Changed</a></li>
         <li><a href="#pension-squeeze" onclick="TE_closeSidebar()"><span class="num">★</span>What Changes, and When</a></li>
         <li><a href="#chapter-1" onclick="TE_closeSidebar()"><span class="num">01</span>The 60% Band</a></li>
         <li><a href="#chapter-2" onclick="TE_closeSidebar()"><span class="num">02</span>Tax Planning at the Additional Rate</a></li>
@@ -1861,12 +1889,12 @@
      ========================================= -->
 <section class="hero" id="top">
     <div class="hero-inner">
-        <span class="hero-eyebrow">2026 / 27 Edition</span>
+        <span class="hero-eyebrow">2026 / 27 Edition &#183; Updated for the 28 October 2026 Budget</span>
         <h1 class="hero-title"><span class="gold">The 45%</span><br>Club<span class="hero-guide-line"><span class="the-complete">The Complete</span><span class="fpg">Financial Planning Guide</span><span class="for-earners">for Additional Rate Taxpayers</span></span></h1>
         <p class="hero-subtitle">Once your income crosses £125,140, you enter the additional rate, the highest marginal band in the UK tax system. At this level, planning decisions across pensions, investments, protection and estate structure commonly interact in ways that can materially affect long-term outcomes. This guide maps the considerations that additional rate taxpayers often review.</p>
         <div class="hero-meta">
             <div class="hero-meta-item"><span class="hero-meta-dot"></span> 16 Chapters</div>
-            <div class="hero-meta-item"><span class="hero-meta-dot"></span> 2026/27 figures</div>
+            <div class="hero-meta-item"><span class="hero-meta-dot"></span> Budget 2026 update</div>
             <div class="hero-meta-item"><span class="hero-meta-dot"></span> 4 calculators</div>
             <div class="hero-meta-item"><span class="hero-meta-dot"></span> Educational use only</div>
         </div>
@@ -1876,6 +1904,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
             <a href="#chapter-mistakes" class="btn-secondary">The eleven mistakes</a>
+            <a class="pdf-btn pdf-btn-lg" href="The-45-Club-2026-27.pdf?v=202610281521" download="The-45-Club-2026-27.pdf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg><span class="pdf-label-long">Download as PDF</span></a>
         </div>
     </div>
     <div class="hero-scroll-hint">Scroll to begin</div>
@@ -1895,11 +1924,11 @@
 
 <!-- Last-updated / tax-year banner -->
 <div class="meta-banner">
-    <span><strong>Last updated:</strong> August 2026</span>
+    <span><strong>Last updated:</strong> 28 October 2026 (Budget 2026)</span>
     <span class="meta-banner-sep">·</span>
     <span><strong>Tax year:</strong> 2026/27</span>
     <span class="meta-banner-sep">·</span>
-    <span>Figures based on legislation announced up to the 2025 Autumn Budget</span>
+    <span>Figures reflect legislation and announcements up to the Budget of 28 October 2026</span>
 </div>
 
 <!-- =========================================
@@ -1912,6 +1941,7 @@
         <button type="button" class="sidebar-close" aria-label="Close contents" onclick="TE_closeSidebar()">&times;</button>
         <div class="sidebar-heading">Contents</div>
         <ul class="sidebar-nav" id="tocList">
+            <li><a href="#budget-2026">Budget 2026: What Changed</a></li>
             <li><a href="#pension-squeeze"><span class="chapter-num">★</span>What Changes, and When</a></li>
             <li><a href="#chapter-1"><span class="chapter-num">01</span>The 60% Band</a></li>
             <li><a href="#chapter-2"><span class="chapter-num">02</span>Tax Planning at the Additional Rate</a></li>
@@ -1938,13 +1968,97 @@
         <div class="content-inner">
 
         <!-- =========================================
+             BUDGET 2026 — what changed (added 28 Oct 2026)
+             ========================================= -->
+        <article class="chapter" id="budget-2026">
+            <span class="chapter-kicker">Budget 2026 &#183; Updated 28 October 2026</span>
+            <h1>What the Budget <span class="accent">Changed</span></h1>
+            <p class="chapter-lede">The 28 October 2026 Budget left income tax rates and thresholds alone. It raised tax on savings and property income again, halved the BADR lifetime limit and kept the cash ISA at &#163;20,000.</p>
+
+            <p>This section sets out what the Budget changed for additional rate taxpayers, what it left in place, and where each topic is covered in the rest of the guide. Every figure here is taken from the Budget 2026 document and the Overview of Tax Legislation and Rates published on GOV.UK on 28 October 2026.</p>
+
+            <h2 id="b26-changed">What changed</h2>
+
+            <div class="figures-grid">
+                <div class="figure-card">
+                    <div class="figure-label">Savings income, additional rate</div>
+                    <div class="figure-value">49%</div>
+                    <div class="figure-note">From 6 April 2027 (45% in 2026/27)</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-label">Property income, additional rate</div>
+                    <div class="figure-value">49%</div>
+                    <div class="figure-note">From 6 April 2027 (45% in 2026/27)</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-label">BADR lifetime limit</div>
+                    <div class="figure-value">&#163;500,000</div>
+                    <div class="figure-note">From 6 April 2027 (was &#163;1 million)</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-label">Cash ISA limit</div>
+                    <div class="figure-value">&#163;20,000</div>
+                    <div class="figure-note">Planned cut to &#163;12,000 cancelled</div>
+                </div>
+            </div>
+
+            <h3 id="b26-savings">Tax on savings interest and property income</h3>
+            <p>The 2025 Budget had already announced a two percentage point rise in the tax rates on savings income and property income from 6 April 2027. This Budget adds a further two points from the same date. From 2027/28 the savings rates become 24%, 44% and 49% at the basic, higher and additional rates, and these apply across the UK. Property income moves onto its own rates at the same levels in England, Wales and Northern Ireland; the Scottish and Welsh governments can set their own property rates.</p>
+
+            <div class="data-table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Income type</th><th>2026/27</th><th>From 6 April 2027</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Earnings and pension income</strong></td><td>20% / 40% / 45%</td><td>20% / 40% / 45% (unchanged)</td></tr>
+                        <tr><td><strong>Savings income (interest)</strong></td><td>20% / 40% / 45%</td><td>24% / 44% / 49%</td></tr>
+                        <tr><td><strong>Property income</strong></td><td>20% / 40% / 45%</td><td>24% / 44% / 49%</td></tr>
+                        <tr><td><strong>Dividends</strong></td><td>10.75% / 35.75% / 39.35%</td><td>10.75% / 35.75% / 39.35% (unchanged)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>An additional rate taxpayer has no personal savings allowance, so from April 2027 every &#163;1,000 of interest earned outside an ISA or pension would carry &#163;490 of tax. The same &#163;1,000 received as dividends above the &#163;500 allowance would carry &#163;393.50. The relative tax position of cash, bonds and equities held outside a wrapper therefore shifts; Chapter 6 covers how each wrapper treats each type of income, and Chapter 3 covers cash reserves. For landlords, the property rates apply to rental profit, and Chapter 3 covers buy-to-let debt.</p>
+
+            <h3 id="b26-badr">Business Asset Disposal Relief and the new Founders&#8217; Relief</h3>
+            <p>The lifetime limit on gains that qualify for Business Asset Disposal Relief falls from &#163;1 million to &#163;500,000 for qualifying disposals made on or after 6 April 2027. The BADR rate stays at 18%. On a &#163;1 million qualifying gain, the half above the new limit would be taxed at the main 24% rate instead of 18%, around &#163;30,000 more in tax. Special provisions apply to contracts entered into before 6 April 2027 that have not yet completed.</p>
+            <p>The Budget also announced a new Founders&#8217; Relief: a 10% capital gains tax rate on qualifying disposals of shares in high growth companies by founders and early investors, from 6 April 2027. The published rates table shows a &#163;10 million lifetime limit, reduced by any BADR or Investors&#8217; Relief claimed from that date. The qualifying rules are the subject of a technical consultation closing on 30 November 2026, so the detail is not yet final. Chapter 15 covers business owner planning.</p>
+
+            <h3 id="b26-isa">The cash ISA limit stays at &#163;20,000</h3>
+            <p>The reduction in the cash ISA limit to &#163;12,000 for most people under 65, previously planned for April 2027, will not go ahead. The overall ISA limit remains &#163;20,000 a year, and it can all be held in cash. The Junior ISA limit stays at &#163;9,000. With the savings rates rising from 2027, interest earned inside an ISA remains free of tax.</p>
+
+            <h2 id="b26-unchanged">What did not change</h2>
+            <ul>
+                <li><strong>Income tax rates and thresholds:</strong> the &#163;12,570 personal allowance, tapered away between &#163;100,000 and &#163;125,140, and the 45% additional rate above &#163;125,140. Thresholds remain frozen until April 2031, so the 60% band in Chapter 1 is unchanged.</li>
+                <li><strong>Dividend tax:</strong> 10.75%, 35.75% and 39.35%, with the &#163;500 dividend allowance.</li>
+                <li><strong>Capital gains tax:</strong> 18% and 24%, with a &#163;3,000 annual exempt amount.</li>
+                <li><strong>Pensions and inheritance tax:</strong> most unused pension funds and death benefits still come into the estate from 6 April 2027, as legislated in Finance Act 2026. Only minor technical amendments were announced. Chapter 14 covers the change.</li>
+                <li><strong>Pension allowances:</strong> the &#163;60,000 annual allowance, tapering from &#163;260,000 of adjusted income, the &#163;10,000 money purchase annual allowance and the &#163;268,275 Lump Sum Allowance.</li>
+                <li><strong>Salary sacrifice:</strong> the &#163;2,000 National Insurance cap on sacrificed pension contributions from 6 April 2029 stands. Chapter 5 covers it.</li>
+                <li><strong>Inheritance tax thresholds:</strong> the &#163;325,000 nil-rate band and &#163;175,000 residence nil-rate band, frozen until April 2031.</li>
+            </ul>
+
+            <h2 id="b26-other">Other measures worth knowing</h2>
+            <ul>
+                <li><strong>Pension death benefits:</strong> the two-year rule has been removed for payments made on or after 28 October 2026, so tax-free death benefits no longer become taxable solely because they are paid more than two years after the scheme learned of the death.</li>
+                <li><strong>State Pension:</strong> a new Pension Tax Allowance applies from April 2027 to April 2030 for pensioners whose total income is no more than the full new State Pension, and the triple lock will be adjusted from April 2030 so that the State Pension broadly tracks earnings over time.</li>
+            </ul>
+
+            <div class="callout callout-key">
+                <span class="callout-label">Announced, not yet law</span>
+                <p>Most of these measures take effect on 6 April 2027 and are due to be legislated in Finance Bill 2026-27, which can be amended before it becomes law. Sources: the <a href="https://www.gov.uk/government/publications/budget-2026-document/budget-2026-html" target="_blank" rel="noopener">Budget 2026 document</a>, the <a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar" target="_blank" rel="noopener">Overview of Tax Legislation and Rates</a> and its <a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/annex-a-rates-and-allowances" target="_blank" rel="noopener">Annex A rates and allowances</a>. This section is educational only and is not financial or tax advice.</p>
+            </div>
+        </article>
+
+        <!-- =========================================
              THE PENSION SQUEEZE — ad landing section
              Deep-link target: #pension-squeeze
              ========================================= -->
         <article class="chapter squeeze-section" id="pension-squeeze">
             <span class="chapter-kicker">Before You Begin &#183; At a Glance</span>
             <h1>What Changes, <span class="accent">and When</span></h1>
-            <p class="chapter-lede">Two upcoming legislative changes, one from April 2027, one from April 2029, are likely to materially affect pension planning for some individuals with additional rate income levels. This is an overview; the detailed planning implications are covered in the chapters linked below.</p>
+            <p class="chapter-lede">Two upcoming legislative changes, one from April 2027, one from April 2029, are likely to materially affect pension planning for some individuals with additional rate income levels. This is an overview; the detailed planning implications are covered in the chapters that follow.</p>
 
             <div class="squeeze-grid">
                 <div class="squeeze-card">
@@ -1955,7 +2069,7 @@
                     <h3>Pensions entering the IHT estate</h3>
                     <div class="stat">Up to 67%*</div>
                     <p style="font-size:11px; color:rgba(255,255,255,0.65); margin-top:-4px; margin-bottom:14px; font-style:italic;">*Worst-case scenario, most estates face materially lower effective rates.</p>
-                    <p>From 6 April 2027, <strong>most unused Defined Contribution pension funds</strong> are expected to be included in the Inheritance Tax estate, where previously they typically sat outside it. Transfers to a surviving spouse or civil partner remain exempt; death-in-service benefits from registered pension schemes are also excluded. Where an estate sits within the available nil-rate bands (up to £1m combined for a couple in some cases), no IHT is due. Above those bands, in a worst-case scenario, a combined IHT + income tax rate of up to approximately 67% can arise, see the explainer below.</p>
+                    <p>From 6 April 2027, <strong>most unused Defined Contribution pension funds</strong> are expected to be included in the Inheritance Tax estate, where previously they typically sat outside it. Transfers to a surviving spouse or civil partner remain exempt; death-in-service benefits from registered pension schemes are also excluded. Where an estate sits within the available nil-rate bands (up to £1m combined for a couple in some cases), no IHT is due. Above those bands, in a worst-case scenario, a combined IHT + income tax rate of up to approximately 67% can arise (see the explainer below).</p>
                     <a href="#chapter-5" class="squeeze-link">
                         Read the full analysis in Chapter 14 →
                     </a>
@@ -1971,7 +2085,7 @@
                     <p style="font-size:11px; color:rgba(255,255,255,0.65); margin-top:-4px; margin-bottom:14px; font-style:italic;">Applies to salary sacrifice only; direct employer contributions remain NIC-free.</p>
                     <p>From 6 April 2029, under the National Insurance Contributions (Employer Pensions Contributions) Bill, <strong>salary-sacrificed</strong> pension contributions above £2,000 per tax year are due to lose their National Insurance exemption. Direct employer pension contributions outside a salary sacrifice arrangement are not affected. The practical impact on take-home pay depends on the employer's arrangement, specifically, whether NIC savings are currently passed through into the pension and how the employer chooses to handle future NIC on the excess.</p>
                     <a href="#chapter-pension-funding" class="squeeze-link">
-                        Read the full analysis in Chapter 14 →
+                        Read the full analysis in Chapter 5 →
                     </a>
                 </div>
             </div>
@@ -1992,18 +2106,18 @@
                 <p style="margin-top:10px;">Taken together, the two changes may affect both the building phase (the 2029 salary sacrifice cap, where applicable) and the transfer phase (the 2027 IHT change, where applicable) for some individuals. Coordinating a response to both, where either applies to you, is one of the themes of this guide.</p>
             </div>
 
-            <div class="squeeze-together">
+            <div class="squeeze-together screen-only">
                 <strong>Navigate this guide to what matters for your position</strong>
                 <p style="margin-top:10px;">The rest of this guide is an educational framework covering tax planning at the additional rate, retirement income sequencing, protection, estate structure, Wills and Lasting Powers of Attorney, and the investment wrappers and advanced structures that may become relevant at higher asset levels.</p>
                 <p style="margin-top:10px;">Use the <strong>Contents menu</strong> (sidebar on desktop, "Contents" button top-right on mobile) to jump directly to the chapters most relevant to your circumstances, or read through from Chapter 1 for the full framework.</p>
             </div>
 
-            <p class="squeeze-footnote">*In a worst-case scenario only. The 67% figure assumes 40% IHT stacked with 45% income tax on beneficiary drawdown, where the original pension holder died after age 75 and the estate exceeds available nil-rate bands. In the majority of estates, effective rates will be significantly lower. Actual outcomes depend on individual circumstances, beneficiary tax status, the availability of spousal exemption and residence nil-rate band, and the form in which the pension is drawn. Rules may change before April 2027; figures reflect current draft legislation. For educational purposes only, this guide does not constitute financial, tax, estate or investment advice. You should consult an FCA-regulated financial adviser and, for estate matters, a qualified solicitor.</p>
+            <p class="squeeze-footnote">*In a worst-case scenario only. The 67% figure assumes 40% IHT stacked with 45% income tax on beneficiary drawdown, where the original pension holder died after age 75 and the estate exceeds available nil-rate bands. In the majority of estates, effective rates will be significantly lower. Actual outcomes depend on individual circumstances, beneficiary tax status, the availability of spousal exemption and residence nil-rate band, and the form in which the pension is drawn. The change is legislated in Finance Act 2026 and takes effect from 6 April 2027. For educational purposes only, this guide does not constitute financial, tax, estate or investment advice. You should consult an FCA-regulated financial adviser and, for estate matters, a qualified solicitor.</p>
         <div class="tline" role="list" aria-label="Key rule-change dates">
-              <div class="tp-card" role="listitem"><div class="yr">2027</div><div class="tt">Pensions enter the IHT estate</div><div class="dd">From 6 April 2027, most unused DC pension funds are expected to count towards inheritance tax. Cash ISA limits also fall for most under-65s.</div></div>
+              <div class="tp-card" role="listitem"><div class="yr">2027</div><div class="tt">Pensions enter the IHT estate</div><div class="dd">From 6 April 2027, most unused DC pension funds are expected to count towards inheritance tax. Tax on savings and property income also rises, to 49% at the additional rate.</div></div>
               <div class="tp-card" role="listitem"><div class="yr">2028</div><div class="tt">Pension access age rises to 57</div><div class="dd">The minimum access age rises from 55, reshaping the early-retirement bridge for anyone now in their early fifties.</div></div>
               <div class="tp-card" role="listitem"><div class="yr">2029</div><div class="tt">Salary-sacrifice NI cap</div><div class="dd">Sacrificed pension contributions above &#163;2,000 a year are due to lose their National Insurance exemption.</div></div>
-              <div class="tp-card" role="listitem"><div class="yr">2031</div><div class="tt">Thresholds frozen until</div><div class="dd">Income-tax and IHT thresholds hold still while pensions, prices and property rise, pulling more income and more estates into tax every year.</div></div>
+              <div class="tp-card" role="listitem"><div class="yr">2031</div><div class="tt">Thresholds frozen to 2031</div><div class="dd">Income-tax and IHT thresholds hold still while pensions, prices and property rise, pulling more income and more estates into tax every year.</div></div>
             </div>
 </article>
 
@@ -2047,7 +2161,7 @@
                     </div>
                 </div>
             </div>
-            <div class="calc-foot">Calculator outputs are illustrative only, a worst-case scenario where the pension value sits above available nil-rate bands (the first £325k–£500k per person is typically sheltered from IHT, and transfers to a surviving spouse remain exempt). Income tax only applies where the original pension holder died after age 75 and the beneficiary draws the remaining funds as income. Based on Finance Bill 2025-26 draft legislation taking effect from 6 April 2027, rules may be amended before Royal Assent. Does not constitute tax, legal, estate or financial advice.</div>
+            <div class="calc-foot">Calculator outputs are illustrative only, a worst-case scenario where the pension value sits above available nil-rate bands (the first £325k–£500k per person is typically sheltered from IHT, and transfers to a surviving spouse remain exempt). Income tax only applies where the original pension holder died after age 75 and the beneficiary draws the remaining funds as income. Based on the Finance Act 2026, with the change taking effect from 6 April 2027. Does not constitute tax, legal, estate or financial advice.</div>
         </div>
 
         <!-- =========================================
@@ -2135,17 +2249,17 @@
             <p>Pension contributions reduce taxable income pound-for-pound (up to the annual allowance and earnings limit), which means they can reduce or eliminate exposure to the 60% band entirely. For someone earning £110,000 who contributes £10,000 into a pension, the effective tax relief on that £10,000 contribution can reach 60%, a relief rate unavailable almost anywhere else in the tax system.</p>
 
             <h3>Salary sacrifice</h3>
-            <p>Where available, salary sacrifice into pension contributions also removes National Insurance from the same income. This is due to change materially from April 2029, when salary-sacrificed contributions above £2,000 a year will no longer be NI-exempt. Chapter 2 and Chapter 5 discuss the 2029 change in detail.</p>
+            <p>Where available, salary sacrifice into pension contributions also removes National Insurance from the same income. This is due to change materially from April 2029, when salary-sacrificed contributions above £2,000 a year will no longer be NI-exempt. Chapter 5 discusses the 2029 change in detail.</p>
 
             <h3>Charitable giving via Gift Aid</h3>
-            <p>Gift Aid contributions extend the basic-rate band by the gross donation amount, which can effectively recover some of the personal allowance that would otherwise be tapered away.</p>
+            <p>Gift Aid donations extend the basic-rate band by the gross amount and also reduce adjusted net income, which can restore some of the personal allowance that would otherwise be tapered away.</p>
 
             <h3>Timing of bonuses and income events</h3>
             <p>For individuals with discretion over when income is received (business owners, share-scheme participants, those considering deferred compensation), income timing across tax years can influence how much falls into the 60% band in any given year.</p>
 
             <div class="callout callout-why">
                 <span class="callout-label">Why this chapter comes first</span>
-                <p>For many additional rate taxpayers, the 60% band is the single highest-leverage planning opportunity in the tax system. Tax planning decisions made anywhere else in this guide, pension sequencing, wrapper selection, dividend timing, year-end gifting, all rest on whether baseline income is managed around this band. That is why we start here. Everything else builds on it.</p>
+                <p>For many additional rate taxpayers, the 60% band is the single highest-leverage planning opportunity in the tax system. Tax planning decisions made anywhere else in this guide (pension sequencing, wrapper selection, dividend timing, year-end gifting) all rest on whether baseline income is managed around this band. That is why we start here. Everything else builds on it.</p>
             </div>
 
                         <div class="related-chapters"><span class="related-label">Related chapters</span><div class="related-links"><a href="#chapter-2">Tax Planning</a><a href="#chapter-mistakes">The Eleven Mistakes</a></div></div>
@@ -2168,7 +2282,7 @@
             <p class="chapter-lede">The 2026/27 tax year continues a trend that has quietly reshaped the economics of earning, investing and accumulating wealth in the UK: frozen thresholds, rising dividend rates, lower allowances, and a tax system where higher earners increasingly interact with multiple rules at once. This chapter maps the landscape as it now stands.</p>
 
             <h2 id="c2-bands">Income tax bands: 2026/27</h2>
-            <p>The core income tax thresholds remain frozen through the 2026/27 tax year, a continuation of the freeze originally announced in 2021. The thresholds have not increased with inflation since the 2021/22 tax year, and are legislated to remain frozen until at least April 2028.</p>
+            <p>The core income tax thresholds remain frozen through the 2026/27 tax year, a continuation of the freeze originally announced in 2021. The thresholds have not increased with inflation since the 2021/22 tax year, and are legislated to remain frozen until April 2031.</p>
 
             <div class="data-table-wrap">
                 <table>
@@ -2188,7 +2302,7 @@
             <p>Thresholds quoted apply to England, Wales and Northern Ireland. Scotland operates a different set of bands and rates for non-savings, non-dividend income, which are set by the Scottish Parliament.</p>
 
             <h2 id="c2-dividends">Dividend tax and CGT: what's changed from April 2026</h2>
-            <p>Two significant changes took effect from 6 April 2026, both legislated in the 2025 Autumn Budget:</p>
+            <p>Two significant changes took effect from 6 April 2026, both announced in the 2025 Autumn Budget:</p>
 
             <div class="figures-grid">
                 <div class="figure-card">
@@ -2224,17 +2338,17 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>Standard CGT rate</strong></td><td>18%</td><td>24%</td></tr>
-                        <tr><td><strong>Business Asset Disposal Relief (BADR)</strong></td><td colspan="2">18% (up from 14%, rate change from 6 April 2026)</td></tr>
+                        <tr><td><strong>Business Asset Disposal Relief (BADR)</strong></td><td colspan="2">18% (up from 14% from 6 April 2026); lifetime limit falls from &#163;1m to &#163;500,000 from 6 April 2027</td></tr>
                         <tr><td><strong>Annual exempt amount</strong></td><td colspan="2">£3,000</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <p>The rise in the BADR rate to 18% is a significant shift for business owners approaching a sale. BADR applies to the first £1 million of qualifying lifetime gains on a qualifying business disposal. A sale that would have incurred £140,000 of CGT at the 14% rate in 2025/26 now incurs £180,000 under the 18% rate, approximately £40,000 more on a £1m gain.</p>
+            <p>The rise in the BADR rate to 18% is a significant shift for business owners approaching a sale. BADR applies to the first £1 million of qualifying lifetime gains on a qualifying business disposal. A sale that would have incurred £140,000 of CGT at the 14% rate in 2025/26 now incurs £180,000 under the 18% rate, approximately £40,000 more on a £1m gain. Budget 2026 then halved the lifetime limit to £500,000 for disposals on or after 6 April 2027, so from that date only the first £500,000 of gains qualifies for the 18% rate.</p>
 
             <div class="callout callout-key">
-                <span class="callout-label">VCT income tax relief, reduced from April 2025</span>
-                <p>Venture Capital Trust (VCT) income tax relief has reduced from 30% to 20% on new subscriptions, affecting the upfront tax advantage of VCT investing. The annual subscription limit of £200,000 remains in place. VCTs are covered in more detail in Chapter 7.</p>
+                <span class="callout-label">VCT income tax relief, reduced from April 2026</span>
+                <p>Venture Capital Trust (VCT) income tax relief has reduced from 30% to 20% on new subscriptions, affecting the upfront tax advantage of VCT investing. The annual subscription limit of £200,000 remains in place. VCTs are covered in more detail in Chapter 6.</p>
             </div>
 
             <h2 id="c2-drag">Fiscal drag: the quiet effect of frozen thresholds</h2>
@@ -2258,10 +2372,10 @@
             <p>The standard pension annual allowance remains £60,000 for 2026/27. For high earners, this can be reduced through the tapered annual allowance where "adjusted income" exceeds £260,000, the allowance then reduces by £1 for every £2 above the threshold, to a minimum of £10,000. The taper is covered in depth in Chapter 5.</p>
 
             <h3>Allowance use across the household</h3>
-            <p>At the additional rate, household financial planning often considers how allowances, personal allowance, ISA allowance, dividend allowance, CGT annual exempt amount, are distributed across two individuals rather than one. Where one partner is in the additional rate and the other is not, decisions around how investment capital and income-generating assets are held can materially affect net household outcomes, subject to personal circumstances and the rules governing gifts between spouses.</p>
+            <p>At the additional rate, household financial planning often considers how allowances (personal allowance, ISA allowance, dividend allowance, CGT annual exempt amount) are distributed across two individuals rather than one. Where one partner is in the additional rate and the other is not, decisions around how investment capital and income-generating assets are held can materially affect net household outcomes, subject to personal circumstances and the rules governing gifts between spouses.</p>
 
             <h3>Investment wrapper positioning</h3>
-            <p>At higher marginal rates, the difference between sheltered and unsheltered investment returns compounds more significantly over time. ISAs, pensions, bonds and GIAs each interact with income and capital gains taxation differently. Wrapper positioning is covered in detail in Chapter 7.</p>
+            <p>At higher marginal rates, the difference between sheltered and unsheltered investment returns compounds more significantly over time. ISAs, pensions, bonds and GIAs each interact with income and capital gains taxation differently. Wrapper positioning is covered in detail in Chapter 6.</p>
 
             <h3>Tax year timing</h3>
             <p>Several planning levers are tied to the tax year end. Pension contributions, ISA subscriptions, CGT realisations, dividend extractions for business owners, and charitable giving via Gift Aid all operate within specific annual limits. For individuals with discretion over the timing of significant income or gains events, the interaction between tax years becomes an active planning consideration.</p>
@@ -2300,7 +2414,7 @@
 
             <div class="callout callout-why">
                 <span class="callout-label">Why this matters</span>
-                <p>For many additional rate taxpayers, the most valuable planning work is not about finding a single "best" product, it is about how multiple decisions, taken over multiple tax years, compound. Two people with identical gross earnings can experience meaningfully different net outcomes over a decade purely because of structure, coordination, and timing. At the additional rate, effective planning is often less about any single decision and more about how those decisions interact over time.</p>
+                <p>For many additional rate taxpayers, the most valuable planning work is not about finding a single "best" product. It is about how multiple decisions, taken over multiple tax years, compound. Two people with identical gross earnings can experience meaningfully different net outcomes over a decade purely because of structure, coordination, and timing. At the additional rate, effective planning is often less about any single decision and more about how those decisions interact over time.</p>
             </div>
 
                         <div class="related-chapters"><span class="related-label">Related chapters</span><div class="related-links"><a href="#chapter-1">The 60% Band</a><a href="#chapter-6">Wrappers</a><a href="#chapter-mistakes">The Eleven Mistakes</a></div></div>
@@ -2325,7 +2439,7 @@
             <p>The conventional guidance, 3 to 6 months of essential expenses in accessible cash, typically underestimates what individuals with additional rate income levels and their households need. Reasons for holding more include:</p>
             <ul>
                 <li><strong>Variable income components</strong> (bonuses, commission, dividends) can make monthly income irregular. The reserve cushions the gap between income arrival points.</li>
-                <li><strong>Higher fixed outgoings</strong>, large mortgages, school fees, private health, make the consequences of a shortfall more acute.</li>
+                <li><strong>Higher fixed outgoings</strong> (large mortgages, school fees, private health) make the consequences of a shortfall more acute.</li>
                 <li><strong>Career risk</strong> at senior roles can mean longer gaps between engagements; 9–12 months of cash is not unusual.</li>
                 <li><strong>Business owners and self-employed</strong> professionals often hold 12 months of personal expenses plus 3–6 months of business runway.</li>
             </ul>
@@ -2342,7 +2456,7 @@
             </div>
 
             <h3>The cost of holding too much cash</h3>
-            <p>Excess cash reserves carry a real cost: inflation erodes purchasing power. At 3% inflation, £100,000 in cash earning 3.5% effectively grows by 0.5% in real terms, before interest tax. For an additional-rate taxpayer with all interest taxable (personal savings allowance is £0 at 45%), the same £100,000 may earn less than inflation in real terms.</p>
+            <p>Excess cash reserves carry a real cost: inflation erodes purchasing power. At 3% inflation, £100,000 in cash earning 3.5% effectively grows by 0.5% in real terms, before interest tax. For an additional-rate taxpayer with all interest taxable (personal savings allowance is £0 at 45%), the same £100,000 may earn less than inflation in real terms. From 6 April 2027 the savings additional rate rises to 49% (Budget 2026), widening that gap.</p>
 
             <p>The implication: hold enough cash to absorb shocks comfortably, but beyond that threshold, additional capital typically works harder inside a tax-efficient wrapper (ISA, pension, GIA) than in further cash reserves.</p>
 
@@ -2351,11 +2465,11 @@
             <p>Mortgages held by individuals with additional rate income levels typically sit in the £500,000 – £1,500,000 range, and the structural choices made around them compound over decades. The key levers:</p>
 
             <h3>Repayment vs interest-only</h3>
-            <p>A repayment mortgage reduces principal alongside interest, ending with a fully paid-off property. An interest-only mortgage pays only the interest throughout the term, leaving the full principal to be repaid at maturity, typically through a parallel investment vehicle (ISA portfolio, business sale proceeds, or pension tax-free lump sum, subject to Chapter 5's discussion of the 25% LSDBA).</p>
+            <p>A repayment mortgage reduces principal alongside interest, ending with a fully paid-off property. An interest-only mortgage pays only the interest throughout the term, leaving the full principal to be repaid at maturity, typically through a parallel investment vehicle (ISA portfolio, business sale proceeds, or pension tax-free lump sum, subject to the Lump Sum Allowance covered in Chapter 5).</p>
             <p>Interest-only is common at higher incomes because it preserves monthly cashflow for investment or pension contributions. The risk is structural: if the parallel investment underperforms, the principal gap widens. Capacity to absorb this risk is the key test.</p>
 
             <h3>Offset mortgages</h3>
-            <p>An offset mortgage links the mortgage account to a savings account. Money held in the savings account reduces the mortgage balance on which interest is charged. For higher-rate taxpayers, this is often more efficient than holding cash in a regular savings account, the "return" from reduced mortgage interest is effectively tax-free, whereas savings interest at the additional rate would be taxed at 45%. Offset products are less common in the UK market than they once were, but remain meaningful for some lenders.</p>
+            <p>An offset mortgage links the mortgage account to a savings account. Money held in the savings account reduces the mortgage balance on which interest is charged. For higher-rate taxpayers, this is often more efficient than holding cash in a regular savings account, the "return" from reduced mortgage interest is effectively tax-free, whereas savings interest at the additional rate would be taxed at 45%, rising to 49% from April 2027. Offset products are less common in the UK market than they once were, but remain meaningful for some borrowers.</p>
 
             <h3>Remortgaging cadence</h3>
             <p>Most UK mortgages are fixed-rate deals of 2, 3, 5 or 10 years, after which they revert to the lender's standard variable rate (typically materially higher). Missing a remortgage by even a few months can cost thousands in additional interest. A structured remortgage review calendar, initiated 6 months before rate end, comparing rates through a broker or directly, is a simple discipline that compounds over a 25-year mortgage term into very material savings.</p>
@@ -2383,7 +2497,7 @@
 
             <p>For a higher-rate taxpayer with a mortgage at 4.5% and unused pension annual allowance, a £10,000 pension contribution typically yields more long-term value than a £10,000 mortgage overpayment, because the effective cost of £10,000 into a pension (after tax relief) is £6,000 for a higher-rate taxpayer or £5,500 for an additional-rate taxpayer, and that contribution then compounds tax-free.</p>
 
-            <p>For someone caught in the 60% band between £100,000 and £125,140, the pension contribution economics become unusually favourable. A £10,000 gross pension contribution has an effective net cost of approximately £4,000, £6,000 of tax relief across basic-rate relief, higher-rate relief via self-assessment, and recovery of personal allowance that would otherwise have been tapered away. The £10,000 is then invested tax-efficiently within the pension wrapper.</p>
+            <p>For someone caught in the 60% band between £100,000 and £125,140, the pension contribution economics become unusually favourable. A £10,000 gross pension contribution has an effective net cost of approximately £4,000, with £6,000 of tax relief coming from basic-rate relief, higher-rate relief via self-assessment, and recovery of personal allowance that would otherwise have been tapered away. The £10,000 is then invested tax-efficiently within the pension wrapper.</p>
 
             <div class="callout callout-why">
                 <span class="callout-label">The broader point</span>
@@ -2396,7 +2510,7 @@
 
             <h3>Plan 2: borrowers 2012–2022</h3>
             <ul>
-                <li>Repayments: 9% of income above £28,470 (2026/27 threshold)</li>
+                <li>Repayments: 9% of income above £29,385 (2026/27 threshold, then frozen for three years from 2027/28)</li>
                 <li>Written off 30 years after first repayment became due</li>
                 <li>Interest: RPI to RPI+3%, depending on income</li>
             </ul>
@@ -2416,15 +2530,15 @@
                 <li>Inside the 60% band between £100,000 and £125,140 with a Plan 2 loan: the effective rate can reach <strong>70%+</strong></li>
             </ul>
 
-            <p>For individuals likely to repay their loan in full well before the 30/40 year write-off, voluntary overpayments can make financial sense, every £1 overpaid reduces future 9% deductions permanently. For those unlikely to repay in full before write-off, voluntary overpayment is typically not optimal. Modelling the balance vs remaining years is key.</p>
+            <p>For individuals likely to repay their loan in full well before the 30/40 year write-off, voluntary overpayments can make financial sense: every £1 overpaid reduces future 9% deductions permanently. For those unlikely to repay in full before write-off, voluntary overpayment is typically not optimal. Modelling the balance vs remaining years is key.</p>
 
             <h2 id="cf-btl">Buy-to-let and property debt</h2>
 
-            <p>For landlords, the tax economics of buy-to-let mortgages changed materially following the phased implementation of Section 24 (full effect from April 2020). Mortgage interest is no longer fully deductible from rental income for individual landlords, instead, a 20% tax credit applies.</p>
+            <p>For landlords, the tax economics of buy-to-let mortgages changed materially following the phased implementation of Section 24 (full effect from April 2020). Mortgage interest is no longer fully deductible from rental income for individual landlords; instead, a 20% tax credit applies.</p>
 
-            <p>For a higher or additional-rate landlord, this effectively means mortgage interest is relieved at 20% rather than 40% or 45%, producing a material tax increase on geared property investments. Common planning implications include:</p>
+            <p>For a higher or additional-rate landlord, this effectively means mortgage interest is relieved at 20% rather than 40% or 45%, producing a material tax increase on geared property investments. From 6 April 2027, rental profit is also taxed at separate property rates of 24%, 44% and 49% (Budget 2026). Common planning implications include:</p>
             <ul>
-                <li><strong>Incorporation:</strong> holding BTL properties through a limited company, where mortgage interest remains fully deductible against rental profit. Trade-offs include corporation tax (currently 25% main rate), SDLT on transfer into the company (often 3% surcharge), CGT on the transfer, and different lending economics.</li>
+                <li><strong>Incorporation:</strong> holding BTL properties through a limited company, where mortgage interest remains fully deductible against rental profit. Trade-offs include corporation tax (currently 25% main rate), SDLT on transfer into the company (including the 5% higher-rate surcharge), CGT on the transfer, and different lending economics.</li>
                 <li><strong>Gearing reduction:</strong> reducing the loan-to-value on BTL properties to limit the Section 24 drag.</li>
                 <li><strong>Joint ownership / spouse allocation:</strong> in unequal split ownership with an election, rental income may be allocated to the lower-earning spouse where appropriate.</li>
                 <li><strong>Furnished Holiday Let rules:</strong> the preferential FHL regime was abolished from April 2025. Former FHL properties now fall under standard residential property rules, eliminating the CGT reliefs and mortgage interest treatment that previously applied.</li>
@@ -2481,7 +2595,7 @@
             <p>Rather than paying a lump sum on death, FIB pays a regular tax-free income to dependants for the remainder of the policy term. For households where the primary concern is maintaining monthly cash flow rather than clearing a single debt, FIB can provide more tailored coverage, and is often less expensive than equivalent lump-sum cover for the same net benefit.</p>
 
             <h3>Whole-of-life assurance</h3>
-            <p>Pays out whenever the insured person dies, not within a fixed term. Typically more expensive than term assurance, and frequently used for estate planning rather than dependant protection, specifically, to provide liquidity to meet an expected inheritance tax liability. Chapter 6 discusses whole-of-life in the IHT planning context.</p>
+            <p>Pays out whenever the insured person dies, not within a fixed term. Typically more expensive than term assurance, and frequently used for estate planning rather than dependant protection, specifically, to provide liquidity to meet an expected inheritance tax liability. Chapter 14 discusses whole-of-life in the IHT planning context.</p>
 
             <div class="callout callout-key">
                 <span class="callout-label">Trust ownership</span>
@@ -2506,7 +2620,7 @@
 
             <p>Critical illness cover pays a tax-free lump sum on diagnosis of one of a defined list of serious conditions, commonly cancer, heart attack, stroke, multiple sclerosis, and similar. Unlike income protection, it pays on diagnosis rather than inability to work, and pays once (usually) rather than as an ongoing income.</p>
 
-            <p>Critical illness and income protection are often described as complementary rather than alternative products. Critical illness addresses the immediate capital needs that can follow a serious diagnosis, home adaptations, specialist treatment, loss of income during treatment, while income protection addresses the ongoing replacement of earnings for as long as recovery takes.</p>
+            <p>Critical illness and income protection are often described as complementary rather than alternative products. Critical illness addresses the immediate capital needs that can follow a serious diagnosis (home adaptations, specialist treatment, loss of income during treatment), while income protection addresses the ongoing replacement of earnings for as long as recovery takes.</p>
 
             <p>Policy quality varies more in critical illness than in most other protection products. The list of defined conditions, the definitions themselves, and the presence or absence of "enhanced" or "severity-based" payouts all materially affect what a policy will and will not pay.</p>
 
@@ -2519,7 +2633,7 @@
             <div class="callout callout-key">
                 <span class="callout-label">Two allowances, often confused</span>
                 <p>Since April 2024 pension lump sums have been governed by two separate limits. The <strong>Lump Sum Allowance (LSA)</strong> of <strong>£268,275</strong> caps the tax-free cash that can be taken during life. The <strong>Lump Sum and Death Benefit Allowance (LSDBA)</strong> of <strong>£1,073,100</strong> is the wider limit covering tax-free lump sums paid both in life and on death.</p>
-                <p>The two interact: tax-free cash taken in life uses up LSDBA as well as LSA. Death-in-service cover tests against the LSDBA only where it is provided through a registered pension scheme, which is why a large multiple-of-salary benefit can consume a meaningful part of it before pension death benefits are considered. Many employers instead use an excepted group life policy, which sits outside the registered pension regime and does not test against the allowance. The distinction is worth establishing, because the two arrangements produce very different results for someone with a substantial pension. Protections held from earlier regimes can change both figures.</p>
+                <p>The two interact: tax-free cash taken in life uses up LSDBA as well as LSA. Death-in-service cover, where it is paid from a registered pension scheme, tests against the LSDBA, which is why a large multiple-of-salary benefit can consume a meaningful part of it before pension death benefits are considered at all. Protections held from earlier regimes can change both figures.</p>
             </div>
 
 
@@ -2562,7 +2676,7 @@
             <p>For higher earners, the annual allowance reduces once adjusted income exceeds threshold levels.</p>
 
             <div class="worked-example">
-                <div class="worked-example-title">Tapering in practice — James, age 54</div>
+                <div class="worked-example-title">Tapering in practice: James, age 54</div>
                 <ul>
                     <li>£200,000 salary</li>
                     <li>£100,000 dividends</li>
@@ -2570,7 +2684,7 @@
                     <li>James contributes £40,000</li>
                     <li>Total pension contribution = £60,000</li>
                 </ul>
-                <p><strong>Threshold income</strong> = £300,000 (above £200,000 threshold).</p>
+                <p><strong>Threshold income</strong> = £260,000 (income less his own £40,000 contribution, so above the £200,000 threshold).</p>
                 <p><strong>Adjusted income</strong> = £320,000 (income plus employer contribution). This exceeds the £260,000 taper threshold by £60,000.</p>
                 <p>His annual allowance reduces by £30,000 (£1 for every £2 over) to <strong>£30,000</strong>.</p>
                 <p>If £60,000 is contributed, £30,000 exceeds the tapered allowance and may be subject to an annual allowance charge.</p>
@@ -2598,7 +2712,7 @@
             <p>A short-term access decision may permanently limit future tax-efficient contributions.</p>
 
             <div class="callout callout-watch">
-                <span class="callout-label">Coming April 2029 — Salary Sacrifice NI Cap</span>
+                <span class="callout-label">Coming April 2029: Salary Sacrifice NI Cap</span>
                 <p>Under legislation introduced in the 2025 Autumn Budget (National Insurance Contributions (Employer Pensions Contributions) Bill, published December 2025), from <strong>6 April 2029</strong>, salary-sacrificed pension contributions above <strong>£2,000 per tax year</strong> are due to lose their National Insurance exemption. The change applies to <strong>salary sacrifice arrangements only</strong>; direct employer pension contributions outside a salary sacrifice arrangement remain fully NIC-free.</p>
                 <p>The practical impact for an individual depends on the employer's current arrangement, specifically, whether NIC savings are passed through into the pension today, and how the employer chooses to handle future NIC on the excess. Where employers pass through savings, the individual may see a reduced gross pension contribution on the excess above £2,000 post-2029; where employers absorb NIC themselves, the impact is different. Employee NIC on the excess is typically 2% (above the upper earnings threshold) or 8% (below it), while the separate employer NIC sits with the company. Rules may be amended before Royal Assent.</p>
                 <p>The planning implications are twofold: (i) for those with capacity, considering salary-sacrifice contributions during the pre-2029 window may be relevant, and (ii) post-2029, the relative efficiency of direct employer pension contributions vs. employee salary sacrifice, historically often equivalent, may diverge.</p>
@@ -2633,7 +2747,7 @@
 <article class="chapter" id="chapter-6">
             <span class="chapter-kicker">Chapter 06 &#183; Where Assets Live</span>
             <h1>Investment Wrappers &amp; <span class="accent">Advanced Structures</span></h1>
-            <p class="chapter-lede">An investment wrapper is not the investment itself, it is the legal and tax container that holds it. For additional rate taxpayers, the choice of wrapper often influences net outcomes as much as the choice of underlying investment. This chapter maps the principal structures, from everyday (ISA, GIA, Unit Trust) to advanced (VCT, EIS, trusts, FICs), and how each commonly features in a coordinated plan.</p>
+            <p class="chapter-lede">An investment wrapper is not the investment itself. It is the legal and tax container that holds it. For additional rate taxpayers, the choice of wrapper often influences net outcomes as much as the choice of underlying investment. This chapter maps the principal structures, from everyday (ISA, GIA, Unit Trust) to advanced (VCT, EIS, trusts, FICs), and how each commonly features in a coordinated plan.</p>
 
             <h2 id="c6-isas">Individual Savings Accounts (ISAs)</h2>
 
@@ -2674,19 +2788,19 @@
                 <li>Both can be <strong>income units</strong> (distribute income) or <strong>accumulation units</strong> (reinvest income within the fund).</li>
             </ul>
 
-            <p>The wrapper in which a unit trust or OEIC is held, ISA, pension, GIA, determines the tax treatment. The fund itself is simply the investment.</p>
+            <p>The wrapper in which a unit trust or OEIC is held (ISA, pension or GIA) determines the tax treatment. The fund itself is simply the investment.</p>
 
             <h3>Tax treatment of a GIA</h3>
             <ul>
                 <li><strong>Dividends:</strong> Taxable at 10.75% / 35.75% / 39.35% above the £500 dividend allowance.</li>
-                <li><strong>Interest (on bond funds):</strong> Taxable as savings income at 20% / 40% / 45% above the personal savings allowance (£1,000 basic rate, £500 higher rate, £0 additional rate).</li>
+                <li><strong>Interest (on bond funds):</strong> Taxable as savings income at 20% / 40% / 45% (24% / 44% / 49% from 6 April 2027) above the personal savings allowance (£1,000 basic rate, £500 higher rate, £0 additional rate).</li>
                 <li><strong>Capital gains:</strong> Taxable at 18% (basic rate) or 24% (higher/additional) on gains above the £3,000 annual exempt amount.</li>
                 <li><strong>Accumulation units:</strong> Income "accumulated" within the fund is still taxable in the year it arises, even though it is not paid out. This creates a subtle reporting requirement often overlooked by self-assessment filers.</li>
             </ul>
 
             <div class="callout callout-key">
                 <span class="callout-label">CGT harvesting</span>
-                <p>One of the most commonly used planning techniques in GIAs is "CGT harvesting", realising gains up to the £3,000 annual exempt amount each year to progressively reset the cost basis of holdings. Over 10 years, a disciplined harvesting strategy can convert £30,000 of latent CGT exposure into realised, tax-free gains. Rules around "bed and breakfasting" and the 30-day share matching rule apply, disposal and re-acquisition of the same security within 30 days must be structured appropriately to avoid unwinding the gain.</p>
+                <p>One of the most commonly used planning techniques in GIAs is "CGT harvesting", realising gains up to the £3,000 annual exempt amount each year to progressively reset the cost basis of holdings. Over 10 years, a disciplined harvesting strategy can realise £30,000 of gains tax-free and reset the cost base. Rules around "bed and breakfasting" and the 30-day share matching rule apply: disposal and re-acquisition of the same security within 30 days must be structured appropriately to avoid unwinding the gain.</p>
             </div>
 
             <h2 id="c6-bonds">Investment bonds: onshore and offshore</h2>
@@ -2704,7 +2818,7 @@
             <h3>Offshore bonds</h3>
             <ul>
                 <li>Held with life companies in jurisdictions such as the Isle of Man or Dublin</li>
-                <li>No UK tax within the fund — "gross roll-up"</li>
+                <li>No UK tax within the fund, known as "gross roll-up"</li>
                 <li>All tax is deferred until a chargeable event (surrender, death, or partial encashment above the 5% allowance)</li>
                 <li>Tax is then paid at the holder's marginal rate on the full gain, with top-slicing relief available</li>
             </ul>
@@ -2713,7 +2827,7 @@
             <p>Common considerations where bonds may play a role:</p>
             <ul>
                 <li>An individual expects to be a lower-rate taxpayer in retirement (paying tax later at a lower rate)</li>
-                <li>Investments are intended to be held in trust for IHT planning, bonds are often used in conjunction with discounted gift trusts and loan trusts</li>
+                <li>Investments are intended to be held in trust for IHT planning; bonds are often used in conjunction with discounted gift trusts and loan trusts</li>
                 <li>ISA and pension allowances are fully used and a tax-deferred structure is preferred to a GIA</li>
                 <li>A large lump sum (e.g. inheritance or business sale proceeds) requires a tax-efficient deployment</li>
             </ul>
@@ -2753,7 +2867,7 @@
                 <li><strong>CGT deferral:</strong> A capital gain made elsewhere can be deferred by investing the gain into an EIS-qualifying company within the qualifying window (one year before to three years after). The deferred gain becomes chargeable when the EIS shares are sold.</li>
                 <li><strong>CGT-free disposal:</strong> Gains on EIS shares are free from CGT after 3 years, provided the qualifying conditions are maintained.</li>
                 <li><strong>Loss relief:</strong> If the investment loses value, loss relief can be claimed against income tax (at the investor's marginal rate) or CGT, which limits the downside.</li>
-                <li><strong>IHT relief:</strong> EIS shares typically qualified for 100% Business Relief. From April 2026, this relief is subject to the £2.5m cap discussed in Chapter 6.</li>
+                <li><strong>IHT relief:</strong> EIS shares typically qualify for 100% Business Relief. From April 2026, this relief is subject to the £2.5m cap discussed in Chapter 14.</li>
             </ul>
 
             <h3>SEIS: for the earliest-stage companies</h3>
@@ -2769,7 +2883,7 @@
             <p>For families at higher wealth levels, or for specific inter-generational planning objectives, trusts and Family Investment Companies are structures that become relevant.</p>
 
             <h3>Trust structures in summary</h3>
-            <p>Chapter 6 introduced trust types (bare, discretionary, interest-in-possession). From an investment perspective, trusts are typically used where:</p>
+            <p>Chapter 14 covers trust types (bare, discretionary, interest-in-possession). From an investment perspective, trusts are typically used where:</p>
             <ul>
                 <li>Assets are being passed to minor children or grandchildren over time</li>
                 <li>A donor wishes to separate control of assets from beneficial ownership</li>
@@ -2785,7 +2899,7 @@
                 <li>Corporation tax rates on investment income can, in some circumstances, be lower than personal marginal rates</li>
                 <li>Dividends between UK companies are generally exempt from corporation tax, so investment income can compound efficiently at the company level</li>
                 <li>Value can be passed down through share classes with specific rights, preserving founder control</li>
-                <li>Avoid some of the relevant property regime tax charges that apply to discretionary trusts</li>
+                <li>Can avoid some of the relevant property regime tax charges that apply to discretionary trusts</li>
             </ul>
 
             <p>FICs also involve complexity: filing obligations, accounting requirements, shareholder loan mechanics, and specific anti-avoidance rules around remuneration and dividends. They are typically considered at significant wealth levels (often £1m+ of investable capital) where the cost of administration is justified by the structural benefit.</p>
@@ -2814,7 +2928,7 @@
                 <li>Income-heavy assets inside pension/ISA</li>
                 <li>Growth assets in taxable account (CGT managed through harvesting)</li>
                 <li>ISA used for flexible withdrawals</li>
-                <li>Pension preserved for longer-term compounding (bearing in mind Chapter 6's note on pensions entering IHT scope from April 2027)</li>
+                <li>Pension preserved for longer-term compounding (bearing in mind Chapter 14's note on pensions entering IHT scope from April 2027)</li>
             </ul>
             <p>Without coordination, tax drag increases annually. With coordination, it is managed more deliberately.</p>
                         <div class="related-chapters"><span class="related-label">Related chapters</span><div class="related-links"><a href="#chapter-2">Tax Planning</a><a href="#chapter-drawdown-playbook">Drawdown Playbook</a><a href="#chapter-mistakes">The Eleven Mistakes</a></div></div>
@@ -2849,7 +2963,7 @@
             <p>Flexible income sits on top of fixed income. Choices about DC withdrawals, in particular, are made in the context of the fixed income already consuming lower bands.</p>
 
             <div class="worked-example">
-                <div class="worked-example-title">Compression in practice — David, age 67</div>
+                <div class="worked-example-title">Compression in practice: David, age 67</div>
                 <p><strong>David</strong> receives:</p>
                 <ul>
                     <li>£35,000 DB pension</li>
@@ -2948,7 +3062,7 @@
             <p>The question becomes: should income be taken gradually while tax bands are wider, or deferred until later when they may be compressed?</p>
 
             <div class="worked-example">
-                <div class="worked-example-title">Two strategies compared — Andrew, age 60</div>
+                <div class="worked-example-title">Two strategies compared: Andrew, age 60</div>
                 <p><strong>Andrew's position:</strong></p>
                 <ul>
                     <li>£30,000 Defined Benefit pension</li>
@@ -2960,7 +3074,7 @@
 
                 <p><strong>Strategy A: Defer DC Withdrawals Until 67</strong></p>
                 <p>From age 60–66: £30,000 DB income + £20,000 ISA withdrawals, no DC withdrawals. Taxable income = £30,000 per year.</p>
-                <p>At 67, State Pension begins (~£12,547). Baseline taxable income becomes £42,547 before DC withdrawals. To maintain £50,000 income, Andrew needs £8,500 additional. This additional income now stacks on top of £42,547, pushing more into higher-rate territory than it would have before age 67.</p>
+                <p>At 67, State Pension begins (~£12,547). Baseline taxable income becomes £42,547 before DC withdrawals. To maintain £50,000 income, Andrew needs about £7,450 more. This additional income now stacks on top of £42,547, pushing more into higher-rate territory than it would have before age 67.</p>
 
                 <p><strong>Strategy B: Structured DC Drawdown Before 67</strong></p>
                 <p>From age 60–66: £30,000 DB + £10,000 DC + £10,000 ISA. Taxable income = £40,000.</p>
@@ -3073,7 +3187,7 @@
             <p>A Defined Benefit pension behaves like income. A Defined Contribution pension behaves like capital.</p>
             <ul>
                 <li><strong>A DB scheme</strong> pays fixed taxable income, is often inflation-linked (sometimes capped), and compresses tax bands immediately.</li>
-                <li><strong>A DC scheme</strong> offers flexible withdrawals, allows a 25% tax-free lump sum (subject to the LSDBA, £1,073,100), and can be sequenced strategically.</li>
+                <li><strong>A DC scheme</strong> offers flexible withdrawals, allows a 25% tax-free lump sum (subject to the Lump Sum Allowance, £268,275), and can be sequenced strategically.</li>
             </ul>
             <p>Confusing the two leads to poor planning.</p>
 
@@ -3082,7 +3196,7 @@
 
             <div class="callout callout-key">
                 <span class="callout-label">2026/27 figure</span>
-                <p>The full new State Pension is <strong>£241.30 per week</strong> (approximately <strong>£12,547.60 per year</strong>) from 6 April 2026, rising from £11,502.40 in 2025/26 under the triple-lock uplift. The personal allowance is £12,570. The State Pension alone consumes nearly all of the tax-free personal allowance. This matters later.</p>
+                <p>The full new State Pension is <strong>£241.30 per week</strong> (approximately <strong>£12,547.60 per year</strong>) from 6 April 2026, rising from £11,973 (£230.25 a week) in 2025/26 under the triple-lock uplift. The personal allowance is £12,570. The State Pension alone consumes nearly all of the tax-free personal allowance. This matters later.</p>
                 <p style="font-size:13px; color:var(--ink-muted); font-style:italic;">Note: The full new State Pension figure assumes a full National Insurance record (typically 35 qualifying years). Individual entitlement may be lower depending on contribution history. Check your personal forecast at <a href="https://www.gov.uk/check-state-pension" target="_blank" rel="noopener">gov.uk/check-state-pension</a>.</p>
             </div>
 
@@ -3093,7 +3207,7 @@
             <p>Rental income, dividends from business ownership, consultancy income, annuities, trust income. All taxable income stacks cumulatively in a tax year.</p>
 
             <div class="worked-example">
-                <div class="worked-example-title">Worked example — "looks simple" but isn't</div>
+                <div class="worked-example-title">Worked example: "looks simple" but isn't</div>
                 <p><strong>Sarah, 58</strong>, believes she has "one pension" and "some savings".</p>
                 <p>On review, she actually has:</p>
                 <ul>
@@ -3127,11 +3241,11 @@
     <tr><td>5</td><td>GIA, harvested annually within the £3,000 CGT exemption</td><td>The overflow reservoir once wrappers are full, kept efficient by disciplined gain-harvesting</td></tr>
     <tr><td>6</td><td>Investment bond, onshore or offshore</td><td>For large surpluses and lump sums: tax-deferred growth, the 5% withdrawal allowance, and a natural pairing with later estate planning</td></tr>
   </table></div>
-  <p>The sequence bends with circumstances, and that is the point. A 52-year-old planning to stop at 55 needs a heavier ISA and GIA weighting than the pension-first default, because pensions are locked until 57 from 2028. A director controls the salary, dividend and employer-contribution mix and can fund priority 2 from the company. Someone brushing the annual-allowance taper (Chapter 7) may find priorities 3 to 6 doing work the pension no longer can. The households that arrive at retirement with a genuine multi-vehicle drawdown available are, almost without exception, the ones that built this way for a decade beforehand. Blend on the way in, and you earn the right to blend on the way out.</p>
+  <p>The sequence bends with circumstances, and that is the point. A 52-year-old planning to stop at 55 needs a heavier ISA and GIA weighting than the pension-first default, because pensions are locked until 57 from 2028. A director controls the salary, dividend and employer-contribution mix and can fund priority 2 from the company. Someone brushing the annual-allowance taper (Chapter 5) may find priorities 3 to 6 doing work the pension no longer can. The households that arrive at retirement with a genuine multi-vehicle drawdown available are, almost without exception, the ones that built this way for a decade beforehand. Blend on the way in, and you earn the right to blend on the way out.</p>
   <div class="worked-example"><h3>A worked example: ten years from retirement</h3>
-  <p style="margin:0">A couple, 55 and 53, with £45,000 a year of genuine surplus. He earns £110,000; she earns £42,000. One reasonable educational shape: he sacrifices £22,000 into his pension, clearing the £100,000 taper and collecting relief at an effective rate near 60% on the tapered slice; she contributes £8,000 to hers with basic-rate relief; the remaining £15,000 splits between her ISA (prioritised, since she will retire first and bridge two years to pension access) and his. Ten years of that pattern, at the Chapter 6 growth assumptions, arrives at retirement with six separately taxed pots and the full Chapter 9 playbook available. The same £450,000 saved into a single pension would arrive with one pot, one tax treatment, and far fewer moves.</p></div>
+  <p style="margin:0">A couple, 55 and 53, with £45,000 a year of genuine surplus. He earns £110,000; she earns £42,000. One reasonable educational shape: he sacrifices £22,000 into his pension, clearing the £100,000 taper and collecting relief at an effective rate near 60% on the tapered slice; she contributes £8,000 to hers with basic-rate relief; the remaining £15,000 splits between her ISA (prioritised, since she will retire first and bridge two years to pension access) and his. Ten years of that pattern, at the Chapter 6 growth assumptions, arrives at retirement with six separately taxed pots and the full playbook below available. The same £450,000 saved into a single pension would arrive with one pot, one tax treatment, and far fewer moves.</p></div>
   <h2>The layering logic</h2>
-  <p>Four properties decide each vehicle's slot: <em>is the withdrawal taxable? is it flexible? does the tax point move? and what does it leave in the estate?</em> ISAs come out tax-free. GIAs come out mostly tax-free within managed allowances. Pensions come out 25% tax-free, then taxable, and now carry the 2027 estate question. Investment bonds defer the tax point to a year of your choosing. Line those properties up against the fixed layers from Chapter 4 and a natural order emerges.</p>
+  <p>Four properties decide each vehicle's slot: <em>is the withdrawal taxable? is it flexible? does the tax point move? and what does it leave in the estate?</em> ISAs come out tax-free. GIAs come out mostly tax-free within managed allowances. Pensions come out 25% tax-free, then taxable, and now carry the 2027 estate question. Investment bonds defer the tax point to a year of your choosing. Line those properties up against the fixed layers from Chapter 7 and a natural order emerges.</p>
   <div class="worked-example"><h3>A worked example: £50,000 drawn across four vehicles</h3>
   <p>A single retiree, before state pension age, needs £50,000. One way the vehicles can combine under 2026/27 rules:</p>
   <div class="data-table-wrap"><table>
@@ -3145,9 +3259,9 @@
   </table></div>
   <p style="margin:0">Drawing the same £50,000 entirely from a pension instead produces <strong>£7,486 of tax</strong>, every single year. The multi-vehicle version is not magic: the bond's tax is deferred rather than cancelled, the ISA and CGT capacity are finite, and sustaining the pattern takes years of prior wrapper-filling. But it shows the size of the lever, and why the mix is built long before retirement. A couple doubles most of these allowances.</p></div>
   <h2>The three phases</h2>
-  <p><strong>Phase 1: early retirement (to state pension age).</strong> Fixed taxable income is at its lowest, so this is the phase for tax-free and tax-efficient sources: ISA withdrawals as the backbone, GIA gains harvested within exempt amounts, cash interest inside savings allowances, tax-free pension cash deployed strategically (clearing debt, funding one-offs), and bond 5% withdrawals where held, while pension drawdown is either deferred or, per Chapter 5, deliberately sized to fill the allowance and basic band. The pension keeps compounding; taxable income stays controlled.</p>
-  <p><strong>Phase 2: mid-retirement (state pension in payment).</strong> The state pension now consumes the allowance automatically. The pattern shifts: taxable pension withdrawals are introduced in <em>measured</em> amounts, enough to spread the pot's tax over many years, never enough to breach the higher-rate threshold, while ISAs and remaining GIA capacity top up spending without adding taxable income. This is where the Chapter 4 layering discipline earns its keep annually.</p>
-  <p><strong>Phase 3: later retirement.</strong> ISAs and GIAs have carried the early load, so pensions naturally carry more, withdrawals still steered under the higher-rate line, ISA remnants reserved for exactly that steering. Where investment bonds are held, encashment often lands here, in years when other income (and therefore the marginal rate on the gain) is lowest. And from 2027, phase 3 has a second objective running alongside income: managing what the pension will be worth <em>to the estate</em>, the calculus Chapter 15 prices in full.</p>
+  <p><strong>Phase 1: early retirement (to state pension age).</strong> Fixed taxable income is at its lowest, so this is the phase for tax-free and tax-efficient sources: ISA withdrawals as the backbone, GIA gains harvested within exempt amounts, cash interest inside savings allowances, tax-free pension cash deployed strategically (clearing debt, funding one-offs), and bond 5% withdrawals where held, while pension drawdown is either deferred or, per Chapter 9, deliberately sized to fill the allowance and basic band. The pension keeps compounding; taxable income stays controlled.</p>
+  <p><strong>Phase 2: mid-retirement (state pension in payment).</strong> The state pension now consumes the allowance automatically. The pattern shifts: taxable pension withdrawals are introduced in <em>measured</em> amounts, enough to spread the pot's tax over many years, never enough to breach the higher-rate threshold, while ISAs and remaining GIA capacity top up spending without adding taxable income. This is where the Chapter 7 layering discipline earns its keep annually.</p>
+  <p><strong>Phase 3: later retirement.</strong> ISAs and GIAs have carried the early load, so pensions naturally carry more, withdrawals still steered under the higher-rate line, ISA remnants reserved for exactly that steering. Where investment bonds are held, encashment often lands here, in years when other income (and therefore the marginal rate on the gain) is lowest. And from 2027, phase 3 has a second objective running alongside income: managing what the pension will be worth <em>to the estate</em>, the calculus Chapter 14 prices in full.</p>
   <div class="callout callout-key"><h3>Three ways to take pension money</h3>
   <p style="margin:0">Even within the pension itself there are three drawdown shapes, and most people only ever hear about the first. <strong>Tax-free cash first:</strong> crystallise the pot, take up to 25% as one lump sum, draw taxable income from the rest thereafter. Simple, and popular, but it lands the entire tax-free entitlement in one year whether or not it is needed. <strong>Phased drawdown:</strong> crystallise the pot in slices over many years, releasing a small piece of tax-free cash alongside each piece of taxable income. This is the shape behind the Phase 2 pattern above, spreading both the tax-free element and the taxable income across the bands of a whole retirement. <strong>UFPLS:</strong> take uncrystallised lump sums where each withdrawal is automatically 25% tax-free and 75% taxable, with no separate crystallisation step. Each shape produces a different taxable-income profile, a different MPAA position and, from 2027, a different estate trajectory. One practical footnote for all three: providers commonly apply an emergency tax code to a first taxable withdrawal, over-deducting tax that must then be reclaimed from HMRC, another reason the first withdrawal deserves planning rather than improvisation. Which shape fits is a regulated, personal question, and one worth asking before the money moves.</p></div>
   <h2>Total return versus income investing</h2>
@@ -3196,7 +3310,7 @@
                     <p>On most of your income above £125,140, they do. But the slice of a contribution that carries income from £125,140 back down toward £100,000 behaves differently, because it does two things at once: it saves tax at 40%, and it restores personal allowance that had been withdrawn.</p>
                     <p>The combined effect on that slice is relief of roughly 60%. It is the same arithmetic as the 60% band, running in reverse, and it appears on no payslip and in no workplace pension tool.</p>
                 </div>
-                <a class="mistake-link" href="#chapter-1">Read the full chapter &#8594; <strong>Chapter 1 · The 60% Band</strong></a>
+                <a class="mistake-link" href="#chapter-1">Read the full chapter &#8594; <strong>Chapter 1 · The 60% Tax Band</strong></a>
             </div>
 
             <div class="mistake" id="m02">
@@ -3212,7 +3326,7 @@
                     <p>Bonus, share vest and dividend extraction are taxed in the year they land, not the years they were earned across. Stacked on baseline earnings, they can carry adjusted income past £260,000, at which point the annual allowance begins to fall by £1 for every £2.</p>
                     <p>The same year is often the one where three years of unused allowance were sitting available. Carry forward lapses on a rolling three-year basis whether or not it was used.</p>
                 </div>
-                <a class="mistake-link" href="#chapter-2">Read the full chapter &#8594; <strong>Chapter 2 · Tax Planning at the Additional Rate</strong></a>
+                <a class="mistake-link" href="#chapter-pension-funding">Read the full chapter &#8594; <strong>Chapter 5 · Pension Funding &amp; the Allowances</strong></a>
             </div>
 
             <div class="mistake" id="m03">
@@ -3242,7 +3356,7 @@
                 <blockquote class="mistake-belief">&#8220;I've got life cover through work.&#8221;</blockquote>
                 <div class="mistake-reality">
                     <p>Death-in-service is a benefit of employment, not a policy you own. It ends when the employment does, which tends to be the same period in life when a mortgage is largest and children are youngest.</p>
-                    <p>Where the cover sits inside a registered pension scheme, it also counts toward the lump sum and death benefit allowance, and a multiple-of-salary benefit at a high income can consume a meaningful part of that allowance before pension death benefits are considered at all. Cover written as an excepted group life policy is treated differently and does not test against the allowance, so which arrangement an employer uses materially changes the position.</p>
+                    <p>It also counts toward the lump sum and death benefit allowance. A multiple-of-salary benefit at a high income can consume a meaningful part of it before pension death benefits are considered at all.</p>
                 </div>
                 <a class="mistake-link" href="#chapter-3">Read the full chapter &#8594; <strong>Chapter 4 · Protection</strong></a>
             </div>
@@ -3276,7 +3390,7 @@
                     <p>Two people can hold the same funds, take the same returns and pay very different amounts of tax, because the wrapper decides the treatment. Dividends taxed at 39.35% outside a wrapper are taxed at nothing inside one.</p>
                     <p>Asset location is not a one-off decision either. It pays every year, on every distribution, for as long as the assets are held.</p>
                 </div>
-                <a class="mistake-link" href="#chapter-6">Read the full chapter &#8594; <strong>Chapter 6 · Wrappers &amp; Investment Vehicles</strong></a>
+                <a class="mistake-link" href="#chapter-6">Read the full chapter &#8594; <strong>Chapter 6 · Investment Wrappers &amp; Advanced Structures</strong></a>
             </div>
 
             <div class="mistake" id="m07">
@@ -3292,7 +3406,7 @@
                     <p>Correct today. The gain is simply unrealised, and it accumulates. A position held for fifteen years without review can carry a gain far larger than any single year's exemption could accommodate.</p>
                     <p>The annual exempt amount works on a use-it-or-lose-it basis. Each tax year that passes without review is an exemption that expires unused.</p>
                 </div>
-                <a class="mistake-link" href="#chapter-6">Read the full chapter &#8594; <strong>Chapter 6 · Wrappers &amp; Investment Vehicles</strong></a>
+                <a class="mistake-link" href="#chapter-6">Read the full chapter &#8594; <strong>Chapter 6 · Investment Wrappers &amp; Advanced Structures</strong></a>
             </div>
 
             <div class="mistake" id="m08">
@@ -3308,7 +3422,7 @@
                     <p>A pension is one of several places retirement income can come from, and it is the one taxed most heavily as income. Drawing the same amount across a pension, an ISA, a general investment account, cash and an investment bond uses several different tax treatments at once.</p>
                     <p>The difference is not marginal. On £50,000 a year it is the difference between a five-figure tax bill over a few years and nothing at all.</p>
                 </div>
-                <a class="mistake-link" href="#chapter-withdrawals">Read the full chapter &#8594; <strong>Chapters 10 &amp; 11 · Withdrawals and the Drawdown Playbook</strong></a>
+                <a class="mistake-link" href="#chapter-drawdown-playbook">Read the full chapter &#8594; <strong>Chapter 11 · The Multi-Vehicle Drawdown Playbook</strong></a>
             </div>
 
             <div class="mistake" id="m09">
@@ -3340,7 +3454,7 @@
                     <p>The residence nil-rate band reduces by £1 for every £2 of estate value above £2m. On a large enough estate it is gone entirely, and for a couple that is £350,000 of allowance.</p>
                     <p>Several of the structures relevant here operate over multi-year periods, which is a function of how the rules are written rather than a matter of preference.</p>
                 </div>
-                <a class="mistake-link" href="#chapter-5">Read the full chapter &#8594; <strong>Chapter 14 · Estate, IHT &amp; the 2027 Change</strong></a>
+                <a class="mistake-link" href="#chapter-5">Read the full chapter &#8594; <strong>Chapter 14 · Estate, Inheritance Tax, Wills &amp; LPAs</strong></a>
             </div>
 
             <div class="mistake" id="m11">
@@ -3356,7 +3470,7 @@
                     <p>That was true, and it made pensions one of the most efficient assets to leave untouched. From 6 April 2027 unused pension funds come within the estate for inheritance tax.</p>
                     <p>Where inheritance tax applies and the beneficiary then draws the fund as taxable income, the two layers stack. In the worst combination the effective rate approaches 67%.</p>
                 </div>
-                <a class="mistake-link" href="#chapter-5">Read the full chapter &#8594; <strong>Chapter 14 · Estate, IHT &amp; the 2027 Change</strong></a>
+                <a class="mistake-link" href="#chapter-5">Read the full chapter &#8594; <strong>Chapter 14 · Estate, Inheritance Tax, Wills &amp; LPAs</strong></a>
             </div>
 
             <div class="mini-cta">
@@ -3381,14 +3495,14 @@
   <p>Identical portfolios, identical returns, £834,000 apart, from a 0.9% fee difference, compounded. Hypothetical illustration (fees assessed at each year end, no transaction costs, returns not guaranteed), but the mechanism is not hypothetical. The same arithmetic applies where charges sit across several pensions at once. On a £400,000 pot held in schemes averaging 1.39% in charges, the gap against a 0.35% alternative works out at roughly £126,000 over fifteen years at 6% gross. Whether moving a pension is appropriate is a separate question, and it turns on features a charge figure does not capture: guarantees, safeguarded benefits, protected tax-free cash and exit penalties among them. Those are matters for an FCA-regulated adviser to assess against the specific schemes involved.</p>
   <h2>2 · Rebalancing has a measurable value</h2>
   <div class="worked-example"><h3>A worked example: two investors, one market cycle</h3>
-  <p>Both start with £500,000 at 60/40 (£300,000 equities, £200,000 bonds). A strong bull market lifts equities 50% and bonds 5%: both portfolios reach £660,000, but the mix has drifted to 69/31. Investor A rebalances back to 60/40 (£396,000 / £264,000); Investor B lets it ride (£450,000 / £210,000).</p>
+  <p>Both start with £500,000 at 60/40 (£300,000 equities, £200,000 bonds). A strong bull market lifts equities 50% and bonds 5%: both portfolios reach £660,000, but the mix has drifted to 68/32. Investor A rebalances back to 60/40 (£396,000 / £264,000); Investor B lets it ride (£450,000 / £210,000).</p>
   <p style="margin:0">Then equities fall 30% while bonds gain 5%. Investor A finishes at <strong>£554,400</strong>; Investor B at <strong>£535,500</strong>. <strong>£18,900 of difference from one act of discipline</strong>, before counting that B now also holds a larger, more heavily-taxed income-producing equity book under the new dividend rates. Portfolios drift towards whatever has performed most recently. Rebalancing is the standing correction to that drift, and it is commonly hardest to apply at the point it matters most.</p></div>
   <h2>3 · Behaviour is often the largest variable</h2>
   <p>The largest retirement losses commonly arise not from market falls themselves but from the decisions taken in response to them. Take a £500,000 balanced portfolio through a 30% fall to £350,000. The investor who sells into cash crystallises the loss permanently, and under current rules parks the proceeds where interest is taxed at raised rates inside shrinking cash-ISA capacity. The investor who stays, and rebalances at the lows, participates in the recovery: a 65% rebound rebuilds the portfolio to about <strong>£577,500, a £227,500 gap in a single cycle</strong>, produced entirely by behaviour. Every major crisis on record, 2001, 2008, 2020, was followed by substantial recovery; the pattern that damages retirements is selling too early, sitting in cash too long, then buying back too late. Repeated across the several cycles a 30-year retirement contains, the gap between disciplined and emotional compounds into seven figures. The most reliably documented value of ongoing advice is not product selection. It is having a counterparty with a plan at exactly the moments these decisions get made.</p>
   <h2>4 · Cash-flow modelling and fiscal drag</h2>
   <p>With thresholds frozen to 2031, a retiree whose withdrawals merely track inflation drifts upward through the bands while standing still in real terms. Model a £50,000 taxable pension income rising 3% a year for 20 years: against today's frozen bands it pays roughly <strong>£85,000 more cumulative tax</strong> than the identical income would if thresholds rose with inflation, tax created purely by the freeze, invisible in any single year, obvious across the plan. Cash-flow modelling exists to surface exactly this: how long the money lasts, when each band gets breached, and which sequencing choices (Chapters 5 and 9) blunt the drag. Small policy settings compound dramatically over a long retirement; modelling is how you see them coming.</p>
   <h2>5 · Asset location, and why it repeats</h2>
-  <p>£300,000 of dividend equities yielding 4% produces £12,000 a year: inside an ISA, kept in full; outside, a higher-rate taxpayer loses over £4,100 of it, every year, at 35.75%. Bond interest outside wrappers now loses more at raised savings rates; growth assets tolerate a GIA best under harvested gains. One repositioning decision, correctly made, pays for itself annually for the rest of the plan, and the shrinking of allowances has raised the price of getting it wrong. Chapter 8's room only works when the furniture is in the right places.</p>
+  <p>£300,000 of dividend equities yielding 4% produces £12,000 a year: inside an ISA, kept in full; outside, a higher-rate taxpayer loses over £4,100 of it, every year, at 35.75%. Bond interest outside wrappers now loses more at raised savings rates; growth assets tolerate a GIA best under harvested gains. One repositioning decision, correctly made, pays for itself annually for the rest of the plan, and the shrinking of allowances has raised the price of getting it wrong.</p>
   <div class="callout callout-key"><h3>In summary</h3><p style="margin:0">Costs, drift, behaviour, drag and location are five separate, compounding gaps. None requires brilliance; all require coordination, discipline and someone actually running the numbers each year. That, not stock-picking, is what professional planning is for. Weigh any fee against the size of the gaps it closes.</p></div>
             <div class="related-chapters"><span class="related-label">Related chapters</span><div class="related-links"><a href="#chapter-6">Wrappers</a><a href="#chapter-drawdown-playbook">Drawdown Playbook</a><a href="#chapter-mistakes">The Eleven Mistakes</a></div></div>
 
@@ -3403,7 +3517,7 @@
 <article class="chapter" id="chapter-5">
             <span class="chapter-kicker">Chapter 14 &#183; Passing It On</span>
             <h1>Estate, Inheritance Tax, <span class="accent">Wills &amp; LPAs</span></h1>
-            <p class="chapter-lede">Inheritance tax has quietly become a broader concern. Frozen nil-rate bands, rising asset values, and two legislative changes, pensions entering the IHT estate from April 2027 and a £2.5 million cap on Business Relief from April 2026, materially reshape the planning landscape for higher earners and their families.</p><figure class="chapter-figure"><img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=1600&q=70" alt="A parent and two young children reading together on a sofa" loading="lazy" decoding="async"><figcaption>Estate planning is the point at which the arithmetic stops being only about you.</figcaption></figure><h2 id="c5-fundamentals">IHT fundamentals: 2026/27</h2>
+            <p class="chapter-lede">Inheritance tax has quietly become a broader concern. Frozen nil-rate bands, rising asset values, and two legislative changes (pensions entering the IHT estate from April 2027 and a £2.5 million cap on Business Relief from April 2026) materially reshape the planning landscape for higher earners and their families.</p><figure class="chapter-figure"><img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=1600&q=70" alt="A parent and two young children reading together on a sofa" loading="lazy" decoding="async"><figcaption>Estate planning is the point at which the arithmetic stops being only about you.</figcaption></figure><h2 id="c5-fundamentals">IHT fundamentals: 2026/27</h2>
 
             <p>Inheritance tax is a tax on the estate of someone who has died, and in some cases on certain lifetime gifts. The standard rate is 40%, charged on the portion of the estate above available nil-rate bands.</p>
 
@@ -3431,7 +3545,7 @@
 
             <h2 id="c5-pension-2027">The April 2027 pension change</h2>
 
-            <p>From <strong>6 April 2027</strong>, unused pension pots and lump-sum death benefits will fall within the deceased's estate for inheritance tax purposes for the first time in UK history. This change was announced in the Autumn 2024 Budget, confirmed after a technical consultation, and will be enacted in Finance Bill 2025-26.</p>
+            <p>From <strong>6 April 2027</strong>, unused pension pots and lump-sum death benefits will fall within the deceased's estate for inheritance tax purposes for the first time in UK history. This change was announced in the Autumn 2024 Budget, confirmed after a technical consultation, and was legislated in the Finance Act 2026.</p>
 
             <h3>What's changing</h3>
             <ul>
@@ -3460,7 +3574,7 @@
 
             <div class="callout callout-watch">
                 <span class="callout-label">Planning implications</span>
-                <p>Pensions have historically been a tax-efficient estate planning tool, precisely because they typically sat outside the estate for IHT. From April 2027, that logic reverses for the unused portion. Common areas that advisers review in response include: reviewing beneficiary nominations, considering whether pension drawdown sequencing should change, reassessing "pension last" strategies that were based on pre-2027 rules, and reviewing the role of life assurance in trust to provide IHT liquidity on pension wealth passed on.</p>
+                <p>Common areas that advisers review in response to the April 2027 change include: reviewing beneficiary nominations, considering whether pension drawdown sequencing should change, reassessing "pension last" strategies that were based on pre-2027 rules, and reviewing the role of life assurance in trust to provide IHT liquidity on pension wealth passed on.</p>
             </div>
 
             <h2 id="c5-br-cap">The Business Relief £2.5m cap: April 2026</h2>
@@ -3478,7 +3592,7 @@
 
             <div class="callout callout-key">
                 <span class="callout-label">Common planning responses</span>
-                <p>For families affected by the cap, planning conversations often now include: the use of the £2.5m cap across spouses (two caps per couple where structuring allows), lifetime gifting strategies to reduce future estate value, reviewing AIM portfolio strategies given the removal of full BR on AIM shares, and considering life assurance written in trust to meet a predictable future IHT liability on business assets. Business Relief rules are technical and interact with gifting and trust rules in specific ways, professional input is typically appropriate.</p>
+                <p>For families affected by the cap, planning conversations often now include: the use of the £2.5m cap across spouses (two caps per couple where structuring allows), lifetime gifting strategies to reduce future estate value, reviewing AIM portfolio strategies given the removal of full BR on AIM shares, and considering life assurance written in trust to meet a predictable future IHT liability on business assets. Business Relief rules are technical and interact with gifting and trust rules in specific ways, so professional input is typically appropriate.</p>
             </div>
 
             <h2 id="c5-gifts">Lifetime gifting: the core mechanics</h2>
@@ -3493,7 +3607,7 @@
                 <li><strong>Annual exemption:</strong> £3,000 per donor per year. Unused allowance can be carried forward one year.</li>
                 <li><strong>Small gifts:</strong> £250 per recipient per year, to as many individuals as desired (not combinable with the annual exemption to the same person).</li>
                 <li><strong>Wedding gifts:</strong> Up to £5,000 from a parent, £2,500 from a grandparent, £1,000 from others.</li>
-                <li><strong>Gifts to spouses/civil partners:</strong> Generally unlimited, provided they are UK domiciled.</li>
+                <li><strong>Gifts to spouses/civil partners:</strong> Generally unlimited, provided the receiving spouse is a long-term UK resident (a cap applies otherwise).</li>
                 <li><strong>Gifts to registered charities:</strong> Fully exempt.</li>
             </ul>
 
@@ -3510,7 +3624,7 @@
                 <li>Beneficiaries use the policy proceeds to pay the IHT bill, freeing up estate assets without a forced sale</li>
             </ul>
 
-            <p>Where the policy is written in trust, the premiums are themselves transfers of value. If they can be met from normal expenditure out of income, and paying them leaves the usual standard of living intact, they may fall within the normal expenditure out of income exemption and be immediately exempt, rather than creating potentially exempt or chargeable transfers. This depends on maintaining a consistent pattern of payment and on records adequate to evidence it. Whole-of-life premiums are typically higher than term assurance because the insurer is certain to pay out at some point. For very large anticipated liabilities, the cumulative cost over decades can be significant, which is why whole-of-life is rarely used in isolation. It tends to feature as one component within a broader strategy that includes gifting, trusts, and pension / investment positioning.</p>
+            <p>Whole-of-life premiums are typically higher than term assurance because the insurer is certain to pay out at some point. For very large anticipated liabilities, the cumulative cost over decades can be significant, which is why whole-of-life is rarely used in isolation. It tends to feature as one component within a broader strategy that includes gifting, trusts, and pension / investment positioning.</p>
 
             <h3>Trust structures: an overview</h3>
             <p>Trusts can play multiple roles in estate planning, each with different tax treatment and legal implications. Common types include:</p>
@@ -3561,7 +3675,7 @@
 
             <h2 id="c5-lpa">Lasting Powers of Attorney: planning for capacity, not just death</h2>
 
-            <p>A Lasting Power of Attorney (LPA) allows a trusted person (an "attorney") to make decisions on behalf of the person granting the LPA (the "donor") if the donor loses mental capacity. LPAs complement Wills — Wills govern what happens after death; LPAs govern what happens if capacity is lost during life.</p>
+            <p>A Lasting Power of Attorney (LPA) allows a trusted person (an "attorney") to make decisions on behalf of the person granting the LPA (the "donor") if the donor loses mental capacity. LPAs complement Wills. Wills govern what happens after death; LPAs govern what happens if capacity is lost during life.</p>
 
             <h3>Two types of LPA</h3>
             <ul>
@@ -3585,7 +3699,7 @@
 
             <div class="callout callout-watch">
                 <span class="callout-label">Registered, or it doesn't work</span>
-                <p>LPAs must be registered with the Office of the Public Guardian before they can be used. Registration currently costs £82 per LPA (2026/27) and takes 4–6 months. An unregistered LPA sitting in a drawer provides no protection if capacity is lost suddenly. Many families discover this only once a crisis has occurred, at which point it is too late.</p>
+                <p>LPAs must be registered with the Office of the Public Guardian before they can be used. Registration currently costs £92 per LPA (since 17 November 2025) and takes 4–6 months. An unregistered LPA sitting in a drawer provides no protection if capacity is lost suddenly. Many families discover this only once a crisis has occurred, at which point it is too late.</p>
             </div>
 
             <h3>Digital assets &amp; modern estates</h3>
@@ -3605,7 +3719,7 @@
             </ul>
 
             <div class="worked-example">
-                <div class="worked-example-title">Widow(er) compression — David and Emma, both 68</div>
+                <div class="worked-example-title">Widow(er) compression: David and Emma, both 68</div>
                 <ul>
                     <li>£40,000 combined DB income (joint life 50%)</li>
                     <li>£25,095 combined State Pension (2026/27)</li>
@@ -3627,16 +3741,16 @@
             <h4>Self-funding thresholds</h4>
             <p>State support for care is means-tested and thresholds vary by nation:</p>
             <ul>
-                <li><strong>England:</strong> full self-funding applies where capital exceeds £23,250 (upper limit). Between £14,250 and £23,250, a tariff income applies; below £14,250, capital is disregarded. A proposed £100,000 cap on lifetime care costs was legislated but has been delayed, current policy should always be verified at point of planning.</li>
-                <li><strong>Scotland:</strong> personal and nursing care are provided free for those aged 65+, though accommodation costs remain means-tested.</li>
+                <li><strong>England:</strong> full self-funding applies where capital exceeds £23,250 (upper limit). Between £14,250 and £23,250, a tariff income applies; below £14,250, capital is disregarded. A legislated £86,000 cap on lifetime care costs was scrapped in 2024, so there is currently no cap; policy should always be verified at the point of planning.</li>
+                <li><strong>Scotland:</strong> free personal and nursing care is available to adults assessed as needing it, though accommodation costs remain means-tested.</li>
                 <li><strong>Wales and Northern Ireland:</strong> separate regimes, with different capital thresholds and contribution rules.</li>
             </ul>
-            <p>For additional rate households, means-tested state support is typically irrelevant, self-funding is almost certain. Planning therefore focuses on <em>how</em> to fund rather than <em>whether</em> to fund.</p>
+            <p>For additional rate households, means-tested state support is typically irrelevant; self-funding is almost certain. Planning therefore focuses on <em>how</em> to fund rather than <em>whether</em> to fund.</p>
 
             <h4>Funding options</h4>
             <ul>
-                <li><strong>Investment drawdown:</strong> funding care from ISA, pension and GIA holdings. Requires planning for longevity, care can last months, or many years.</li>
-                <li><strong>Immediate Needs Annuities (also called Care Fees Annuities):</strong> a single premium buys a guaranteed income payable directly to the care provider, tax-free. Underwriting is medical, rates depend on health and life expectancy at purchase. Eliminates longevity risk on the portion covered.</li>
+                <li><strong>Investment drawdown:</strong> funding care from ISA, pension and GIA holdings. Requires planning for longevity: care can last months, or many years.</li>
+                <li><strong>Immediate Needs Annuities (also called Care Fees Annuities):</strong> a single premium buys a guaranteed income payable directly to the care provider, tax-free. Underwriting is medical: rates depend on health and life expectancy at purchase. Eliminates longevity risk on the portion covered.</li>
                 <li><strong>Equity release (Lifetime Mortgages):</strong> borrowing against property value, with interest typically rolling up until death or sale. Can provide care funding without forcing a property sale, but reduces the estate left to beneficiaries. Modern products are regulated and include no-negative-equity guarantees.</li>
                 <li><strong>Family contribution:</strong> in some cases, adult children fund care costs. Interacts with gifting, IHT, and potential Deprivation of Assets rules if structured to reduce the care-recipient's assessable capital.</li>
             </ul>
@@ -3646,15 +3760,15 @@
                 <p>Local authorities have the power to treat gifts made with the intention of avoiding care costs as though the person still held the assets, known as "deliberate deprivation". There is no fixed time limit. Gifting during advancing age or declining health carries heightened risk of being characterised as deliberate deprivation. Genuine long-term estate planning done while in good health years before any care need is less likely to be challenged, but the question is always fact-specific.</p>
             </div>
 
-            <p>Attendance Allowance provides a modest contribution (current rates around £73.90 / £110.40 per week depending on care needs, under the 2026/27 rates, always verify) to anyone over State Pension age requiring care, regardless of income or capital. For additional rate households it will not move the needle on costs, but it is routinely under-claimed.</p>
+            <p>Attendance Allowance provides a modest contribution (£76.70 or £114.60 per week depending on care needs, at 2026/27 rates) to anyone over State Pension age requiring care, regardless of income or capital. For additional rate households it will not move the needle on costs, but it is routinely under-claimed.</p>
 
             <p>Depleting capital too aggressively early in retirement may reduce flexibility later. Preserving optionality, through a diversified mix of pension, ISA, and equity in the home, is often prudent precisely because care needs are inherently unpredictable.</p>
 
             <h3>Simplification over time</h3>
-            <p>As retirement progresses, multiple small pensions, fragmented accounts, and complex allocations may become burdensome. Clarity benefits surviving spouse. Documentation matters.</p>
+            <p>As retirement progresses, multiple small pensions, fragmented accounts, and complex allocations may become burdensome. Clarity benefits the surviving spouse. Documentation matters.</p>
 
             <h3>Longevity awareness</h3>
-            <p>Retiring at 60 often implies a 30-year horizon. Planning only to "average life expectancy" may introduce risk. Sustainability and legacy must balance: enjoyment during life, security for survivor, and efficient transfer where appropriate.</p>
+            <p>Retiring at 60 often implies a 30-year horizon. Planning only to "average life expectancy" may introduce risk. Sustainability and legacy must balance: enjoyment during life, security for the survivor, and efficient transfer where appropriate.</p>
 
             
         
@@ -3719,15 +3833,15 @@
                 <li><strong>Salary:</strong> deductible for the company, but attracts employer and employee NIC. For 2026/27, director salaries are typically set at the secondary NIC threshold (£5,000 in most cases, depending on specific calculations) to preserve State Pension qualifying years while minimising NIC. Higher salaries become efficient where the employer is claiming Employment Allowance or where pension salary sacrifice is a planning feature (subject to the April 2029 £2,000 NI cap discussed in Chapter 5).</li>
                 <li><strong>Dividends:</strong> paid from post-corporation-tax profit. Taxed at 10.75% / 35.75% / 39.35% in 2026/27. No NIC applies. The £500 dividend allowance provides limited shelter.</li>
                 <li><strong>Employer pension contributions:</strong> fully deductible against corporation tax, no NIC, no income tax for the director (within the annual allowance). Generally the most tax-efficient "income" structure, subject to the allowance and earnings limits. Importantly, the April 2029 NI cap on salary sacrifice does <em>not</em> apply to genuine employer contributions that are not part of a salary sacrifice arrangement.</li>
-                <li><strong>Directors' loans:</strong> short-term financing between company and director, subject to the Section 455 tax charge (currently 33.75%) if loans over £10,000 remain unpaid 9 months after year end. Useful as a cashflow tool, not typically as a long-term remuneration mechanism.</li>
+                <li><strong>Directors' loans:</strong> short-term financing between company and director, subject to the Section 455 tax charge (35.75% on loans made from 6 April 2026) if loans over £10,000 remain unpaid 9 months after year end. Useful as a cashflow tool, not typically as a long-term remuneration mechanism.</li>
             </ul>
 
-            <h3>Business Asset Disposal Relief: at 18% from April 2026</h3>
-            <p>Business Asset Disposal Relief (BADR, formerly Entrepreneurs' Relief) reduces the CGT rate on qualifying disposals of trading businesses. The rate rose from 14% to <strong>18% from 6 April 2026</strong>, with the £1 million lifetime allowance unchanged.</p>
-            <p>For business owners approaching a sale, this change materially affects the economics of timing, structure, and pre-sale planning. A qualifying sale realising £1m in gains that would have cost £140,000 at the 14% rate now costs £180,000 at 18%. For larger disposals where only the first £1m qualifies for BADR, the remainder is taxed at the main CGT rate of 24%.</p>
+            <h3>Business Asset Disposal Relief: 18%, and a &#163;500,000 limit from April 2027</h3>
+            <p>Business Asset Disposal Relief (BADR, formerly Entrepreneurs' Relief) reduces the CGT rate on qualifying disposals of trading businesses. The rate rose from 14% to <strong>18% from 6 April 2026</strong>. Budget 2026 then cut the lifetime limit from £1 million to <strong>£500,000 for qualifying disposals on or after 6 April 2027</strong>, with special provisions for contracts entered into before that date but not yet completed.</p>
+            <p>For business owners approaching a sale, this change materially affects the economics of timing, structure, and pre-sale planning. A qualifying sale realising £1m in gains that would have cost £140,000 at the 14% rate now costs £180,000 at 18%. Gains above the lifetime limit are taxed at the main CGT rate of 24%: on a £1m gain made after 6 April 2027, the half above the new £500,000 limit would cost around £30,000 more than under the old limit. A new Founders&#8217; Relief, a 10% rate for qualifying founders and early investors in high growth companies from 6 April 2027, is under consultation until 30 November 2026 (see the Budget 2026 section).</p>
 
             <h3>Employee Ownership Trusts (EOTs): an alternative exit</h3>
-            <p>An EOT is a trust structure that holds the majority of shares in a trading company for the benefit of all its employees. Selling to an EOT offers specific tax advantages: the disposal is CGT-free for the selling shareholders (subject to conditions), employees can receive tax-free bonuses up to £3,600 per year, and ongoing ownership continues to support the business.</p>
+            <p>An EOT is a trust structure that holds the majority of shares in a trading company for the benefit of all its employees. Selling to an EOT offers specific tax advantages: half of the gain on a qualifying disposal is relieved from CGT for the selling shareholders (relief was cut from 100% to 50% from 26 November 2025, and conditions apply), employees can receive tax-free bonuses up to £3,600 per year, and ongoing ownership continues to support the business.</p>
             <p>EOTs have grown in popularity since their introduction in 2014. Recent tax changes from April 2026 have tightened certain EOT conditions, for example, the disqualifying events period was extended from 1 to 4 years, and the trustee control and valuation requirements have been clarified, but the structure remains a meaningful alternative exit route for trading companies, particularly where a traditional trade sale or private equity exit is not attractive.</p>
 
             <h3>Company-held investments</h3>
@@ -3735,7 +3849,7 @@
             <ul>
                 <li>Investment income (dividends, interest) within a company is taxed at corporation tax (currently 25% main rate; marginal relief between £50,000 and £250,000; 19% small profits rate)</li>
                 <li>Dividend income from other UK companies is generally exempt from corporation tax, allowing efficient compounding of equity investments</li>
-                <li>Holding significant non-trading investments can jeopardise the trading status required for BADR and Business Relief (IHT) — Chapter 6's £2.5m BR cap interaction becomes particularly important here</li>
+                <li>Holding significant non-trading investments can jeopardise the trading status required for BADR and Business Relief (IHT), so Chapter 14's £2.5m BR cap interaction becomes particularly important here</li>
             </ul>
 
             <div class="callout callout-key">
@@ -3795,17 +3909,17 @@
             <p>Grandparents can make pension contributions for grandchildren (via a Junior SIPP) or for adult children. Where the adult child is a higher or additional-rate taxpayer, grandparent contributions into their pension typically attract the same tax relief as if the child had contributed themselves, reducing the grandparent's estate for IHT purposes while accelerating the child's pension wealth. For children in the 60% band (Chapter 1), these contributions can be particularly tax-efficient.</p>
 
             <h3>School fees planning</h3>
-            <p>Private school fees at additional rate household income level frequently run to £20,000 – £50,000+ per child per year, with secondary schools often higher than prep. Following the removal of the VAT exemption on private education in January 2025, fees have effectively increased by approximately 20% at schools that passed on the VAT.</p>
+            <p>Private school fees at additional rate household income level frequently run to £20,000–£50,000+ per child per year, with secondary schools often higher than prep. Following the removal of the VAT exemption on private education in January 2025, fees have effectively increased by approximately 20% at schools that passed on the VAT.</p>
             <p>Common planning approaches include:</p>
             <ul>
                 <li><strong>Dedicated investment portfolios:</strong> building a Stocks &amp; Shares ISA or GIA earmarked for education costs, allowing funds to compound during early childhood and drawn down across school years</li>
-                <li><strong>Grandparent contributions:</strong> where grandparents wish to help, directly paying school fees can be exempt from IHT under the "normal expenditure out of income" rule discussed in Chapter 6, provided the gifts are made from surplus income without reducing the grandparent's standard of living</li>
+                <li><strong>Grandparent contributions:</strong> where grandparents wish to help, directly paying school fees can be exempt from IHT under the "normal expenditure out of income" rule discussed in Chapter 14, provided the gifts are made from surplus income without reducing the grandparent's standard of living</li>
                 <li><strong>Offshore bonds:</strong> historically used for school fees planning due to the 5% tax-deferred withdrawal allowance; interactions with current tax rules require review</li>
                 <li><strong>Discretionary family trusts:</strong> for larger-scale planning, particularly where multiple grandchildren will benefit over decades</li>
             </ul>
 
             <h3>Gifting to adult children</h3>
-            <p>Gifting to adult children, often for property deposits, university costs beyond fees, or to provide financial independence, is a common feature of higher-net-worth family planning. The core mechanics covered in Chapter 6 apply:</p>
+            <p>Gifting to adult children, often for property deposits, university costs beyond fees, or to provide financial independence, is a common feature of higher-net-worth family planning. The core mechanics covered in Chapter 14 apply:</p>
             <ul>
                 <li>Potentially Exempt Transfers become fully exempt after 7 years of donor survival</li>
                 <li>Annual exemption (£3,000), small gifts, and normal expenditure out of income offer immediate exemption routes</li>
@@ -3816,8 +3930,8 @@
             <h3>Multi-generational legacy structures</h3>
             <p>For substantial estates with clearly articulated legacy intentions, additional structures include:</p>
             <ul>
-                <li><strong>Discretionary trusts:</strong> giving trustees flexibility over distributions to future generations, covered in Chapter 6</li>
-                <li><strong>Family Investment Companies:</strong> as discussed in Chapter 7, allowing controlled passing of economic ownership across generations</li>
+                <li><strong>Discretionary trusts:</strong> giving trustees flexibility over distributions to future generations, covered in Chapter 14</li>
+                <li><strong>Family Investment Companies:</strong> as discussed in Chapter 6, allowing controlled passing of economic ownership across generations</li>
                 <li><strong>Accumulation &amp; Maintenance arrangements within Will trusts:</strong> for minor beneficiaries, providing structured distribution at specified ages</li>
                 <li><strong>Family charter / governance documents:</strong> non-legal frameworks setting out the family's approach to wealth, supporting intergenerational conversations that often matter as much as the structures themselves</li>
             </ul>
@@ -3840,7 +3954,7 @@
             <span class="chapter-kicker">Chapter 16 &#183; Bringing It Together</span>
             <h1>Integrated Case Study: <span class="accent">A 25-Year Model</span></h1>
             <p class="chapter-lede">To understand how visibility, layering, sequencing, asset location and sustainability interact, we model a full 25-year retirement. <strong>This is an illustrative simulation only: not a prediction.</strong> Outcomes depend on actual market returns, inflation, spending decisions, individual circumstances and future legislation.</p><figure class="chapter-figure"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=70" alt="A lakeside cabin beneath mountains at dusk" loading="lazy" decoding="async"><figcaption>Twenty-five years, two strategies, one household.</figcaption></figure><div class="callout callout-compliance">
-                <span class="callout-label">Important, worked case study for a two-person household</span>
+                <span class="callout-label">Important: worked case study for a two-person household</span>
                 <p>This case study assumes a <strong>couple</strong> (Mark and Helen), both age 60, both with full NI records qualifying for the full new State Pension. For a <strong>single additional rate taxpayer</strong>, State Pension, target household spend, and the whole simulation would be materially different (notably only one State Pension at ~£12,547.60/year rather than ~£25,095 combined). Readers are encouraged to apply the <em>framework</em> rather than the specific numbers to their own position, and to model their own scenario with a regulated adviser.</p>
             </div>
 
@@ -3870,7 +3984,7 @@
             </ul>
 
             <h2>Strategy B: "Blended Early Sequencing"</h2>
-            <p>Uses the Chapter 5 principle that the early retirement window is a planning asset.</p>
+            <p>Uses the Chapter 9 principle that the early retirement window is a planning asset.</p>
             <ul>
                 <li>Moderate DC withdrawals before 67</li>
                 <li>Partial ISA use</li>
@@ -3880,9 +3994,9 @@
 
             <!-- CHART 1 — DC Pension Balance over 25 Years -->
             <div class="chart-wrap">
-                <div class="chart-title">Chart 1 — DC Pension Balance Over 25 Years</div>
+                <div class="chart-title">Chart 1: DC Pension Balance Over 25 Years</div>
                 <div class="chart-subtitle"><em>Illustrative simulation only, not a prediction.</em> Nominal DC pension pot value year-on-year. Both strategies assume a 5% annual return. Outcomes depend on actual market performance, inflation and individual circumstances.</div>
-                <svg class="chart-svg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Line chart: Strategy A grows DC pot to £3.4M by age 84; Strategy B grows DC to £2.9M by drawing more from it during life">
+                <svg class="chart-svg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Line chart: Strategy A grows DC pot to £3.4M by age 85; Strategy B grows DC to £2.9M by drawing more from it during life">
                     <g stroke="#E8EDF2" stroke-width="1">
                         <line x1="60" y1="40" x2="580" y2="40" stroke-dasharray="3,3"/>
                         <line x1="60" y1="100" x2="580" y2="100" stroke-dasharray="3,3"/>
@@ -3928,15 +4042,15 @@
                     </g>
                 </svg>
                 <div class="chart-legend">
-                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#13C29B"></span>Strategy A — Defer DC, use ISA first</div>
-                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#C9A961"></span>Strategy B — Blended early sequencing</div>
+                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#13C29B"></span>Strategy A: Defer pension, use ISA first</div>
+                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#C9A961"></span>Strategy B: Blended early sequencing</div>
                 </div>
-                <p style="font-size:12px;color:var(--ink-muted);margin-top:10px;">Both DC pots grow substantially over 25 years at 5% assumed return. Strategy A's DC pot reaches ~£3.37M by age 84 because it's mostly untouched; Strategy B reaches ~£2.87M because it's being drawn down throughout. That £500k difference becomes the key variable under the April 2027 pension IHT rules (see Chart 3 discussion).</p>
+                <p style="font-size:12px;color:var(--ink-muted);margin-top:10px;">Both DC pots grow substantially over 25 years at 5% assumed return. Strategy A's DC pot reaches ~£3.37M by age 85 because it is barely touched until 67; Strategy B reaches ~£2.87M because it is drawn on from the start. That £500k difference becomes the key variable under the April 2027 pension IHT rules (see Chart 3 discussion).</p>
             </div>
 
             <!-- CHART 2 — Taxable Income over 25 Years -->
             <div class="chart-wrap">
-                <div class="chart-title">Chart 2 — Taxable Income Over 25 Years</div>
+                <div class="chart-title">Chart 2: Taxable Income Over 25 Years</div>
                 <div class="chart-subtitle"><em>Illustrative simulation only, not a prediction.</em> Annual taxable income (DB + State Pension + taxable portion of DC). ISA withdrawals are tax-free and not shown.</div>
                 <svg class="chart-svg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Line chart showing taxable income for Strategy A jumps sharply at age 67 while Strategy B is smoother">
                     <g stroke="#E8EDF2" stroke-width="1">
@@ -3948,8 +4062,8 @@
                     <line x1="60" y1="40" x2="60" y2="280" stroke="#718096" stroke-width="1"/>
                     <line x1="60" y1="280" x2="580" y2="280" stroke="#718096" stroke-width="1"/>
                     <!-- 60% band shaded zone (£100k–£125,140) -->
-                    <rect x="60" y="129.8" width="520" height="30.2" fill="#E8825C" opacity="0.08"/>
-                    <text x="576" y="149" fill="#B56238" font-size="9" text-anchor="end" font-family="Inter,sans-serif" font-style="italic">60% band zone (£100k–£125,140)</text>
+                    <rect x="60" y="130" width="520" height="30" fill="#E8825C" opacity="0.12"/>
+                    <text x="66" y="153" fill="#B56238" font-size="9" text-anchor="start" font-family="Inter,sans-serif" font-style="italic">60% band zone (£100k–£125,140)</text>
                     <!-- State Pension marker -->
                     <line x1="206" y1="40" x2="206" y2="280" stroke="#13C29B" stroke-width="1" stroke-dasharray="2,3" opacity="0.6"/>
                     <text x="206" y="34" fill="#0E8B70" font-size="9" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">Combined SP starts →</text>
@@ -3989,15 +4103,15 @@
                     </g>
                 </svg>
                 <div class="chart-legend">
-                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#13C29B"></span>Strategy A — Defer pension</div>
-                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#C9A961"></span>Strategy B — Blended</div>
+                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#13C29B"></span>Strategy A: Defer pension, use ISA first</div>
+                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#C9A961"></span>Strategy B: Blended early sequencing</div>
                 </div>
-                <p style="font-size:12px;color:var(--ink-muted);margin-top:10px;">Both strategies show a jump at age 67 as the combined State Pension (~£25k base, inflation-adjusted to ~£31k by year 7) begins. Strategy A's early-year taxable income is much lower (£40–£46k — DB only) because ISA withdrawals are tax-free; Strategy B's is £53–£63k because DC withdrawals start from day one. In later years, both approach the 60% band zone as inflation pushes target income higher.</p>
+                <p style="font-size:12px;color:var(--ink-muted);margin-top:10px;">Both strategies show a jump at age 67 as the combined State Pension (~£25k base, inflation-adjusted to ~£31k by year 7) begins. Strategy A's early-year taxable income is much lower (£40–£46k, DB only) because ISA withdrawals are tax-free; Strategy B's is £53–£63k because DC withdrawals start from day one. In later years, both rise into and through the 60% band zone as inflation pushes target income higher.</p>
             </div>
 
             <!-- CHART 3 — Cumulative Tax Paid -->
             <div class="chart-wrap">
-                <div class="chart-title">Chart 3 — Cumulative Income Tax Paid Over 25 Years</div>
+                <div class="chart-title">Chart 3: Cumulative Income Tax Paid Over 25 Years</div>
                 <div class="chart-subtitle"><em>Illustrative simulation only, not a prediction.</em> Running total of UK income tax paid on all taxable withdrawals, assuming 2026/27 bands held constant. Excludes estate tax, covered separately below.</div>
                 <svg class="chart-svg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Line chart: Strategy A ends with ~£660k cumulative tax paid; Strategy B ends with ~£696k because it pays more tax in early years">
                     <g stroke="#E8EDF2" stroke-width="1">
@@ -4047,8 +4161,8 @@
                     </g>
                 </svg>
                 <div class="chart-legend">
-                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#13C29B"></span>Strategy A — Defer pension</div>
-                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#C9A961"></span>Strategy B — Blended</div>
+                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#13C29B"></span>Strategy A: Defer pension, use ISA first</div>
+                    <div class="chart-legend-item"><span class="chart-legend-swatch" style="background:#C9A961"></span>Strategy B: Blended early sequencing</div>
                 </div>
                 <p style="font-size:12px;color:var(--ink-muted);margin-top:10px;">Over 25 years of lifetime income tax, Strategy A actually pays <strong>less</strong> (~£660k) than Strategy B (~£696k), because years 0–6 only tax the DB pension while ISA withdrawals go tax-free. This is the counter-intuitive part of the analysis: deferring pension draws isn't tax-inefficient during life. The argument for Strategy B is different, and it sits in the estate tax layer, see next section.</p>
             </div>
@@ -4056,14 +4170,14 @@
             <!-- Estate-tax consequence — the real Strategy A vs B tradeoff post-April 2027 -->
             <div class="callout callout-watch" style="margin-top:20px;">
                 <span class="callout-label">The estate-tax layer (from April 2027)</span>
-                <p>At age 84, Strategy A's DC pot is roughly £3.37M; Strategy B's is ~£2.87M, a £500,000 difference. Under the April 2027 rules, that extra DC pension sits within the IHT estate. For an estate already above available nil-rate bands, the £500k difference faces 40% IHT (£200k tax), and when the beneficiary draws it down, a further 45% income tax on the £300k that remains (for an additional-rate heir) = ~£135k more. In that scenario, Strategy A's £36k income-tax saving during life is outweighed by ~£300k of additional estate-and-drawdown tax on the preserved pension pot.</p>
+                <p>At age 85, Strategy A's DC pot is roughly £3.37M; Strategy B's is ~£2.87M, a £500,000 difference. Under the April 2027 rules, that extra DC pension sits within the IHT estate. For an estate already above available nil-rate bands, the £500k difference faces 40% IHT (£200k tax), and when the beneficiary draws it down, a further 45% income tax on the £300k that remains (for an additional-rate heir) = ~£135k more. In that scenario, Strategy A's £36k income-tax saving during life is outweighed by ~£335k of additional estate-and-drawdown tax on the preserved pension pot.</p>
                 <p><strong>Net result for inheritance:</strong> Strategy B typically leaves more net of tax to the next generation, despite paying marginally more income tax during life. The April 2027 rule change is what flips the long-term calculus in favour of drawing pension earlier rather than preserving it.</p>
             </div>
 
             <h2>What the 25-year model reveals</h2>
 
             <h3>1. Early deferral is not automatically safer</h3>
-            <p>Strategy A feels cautious — "leave the pension untouched". But by age 67:</p>
+            <p>Strategy A feels cautious: "leave the pension untouched". But by age 67:</p>
             <ul>
                 <li>State Pension consumes allowance space automatically (~£25,095 combined)</li>
                 <li>Defined Benefit income already compresses bands</li>
@@ -4103,7 +4217,7 @@
             <h3>6. Pension wealth and the April 2027 IHT change</h3>
             <p>If Mark and Helen's combined DC pension wealth is largely unused at second death, it now (from April 2027) falls within the IHT estate. Strategy A, which preserved the pension, produces a larger residual DC balance at death than Strategy B. Depending on estate size and inheritance objectives, this can mean Strategy A leaves a larger gross estate but a significantly smaller net estate after IHT and income tax on beneficiary drawdown.</p>
 
-            <p>The planning question shifts: "preserve pension for legacy" was once close to axiomatic. Post-April-2027, it becomes a more nuanced trade-off between (i) compounding efficiency during life, (ii) IHT exposure on residual pension wealth at death, and (iii) income tax on beneficiary drawdown. Chapter 6's table comparing IHT-then-income-tax compound rates (up to ~67% for additional-rate heirs) directly reshapes the case for, or against, deferral.</p>
+            <p>The planning question shifts: "preserve pension for legacy" was once close to axiomatic. After April 2027, it becomes a more nuanced trade-off between (i) compounding efficiency during life, (ii) IHT exposure on residual pension wealth at death, and (iii) income tax on beneficiary drawdown. The explainer at the start of this guide, comparing IHT-then-income-tax compound rates (up to ~67% for additional-rate heirs) directly reshapes the case for, or against, deferral.</p>
 
             <h2>Reflection questions</h2>
             <p>If this case study resonates, common reflection questions include:</p>
@@ -4156,7 +4270,7 @@
                         </tr>
                         <tr>
                             <td><strong>Tax on withdrawal</strong></td>
-                            <td>Up to 25% tax-free (subject to the £1,073,100 LSDBA); remainder taxed at marginal rate</td>
+                            <td>Up to 25% tax-free (within the £268,275 Lump Sum Allowance); remainder taxed at marginal rate</td>
                             <td>Fully tax-free</td>
                         </tr>
                         <tr>
@@ -4195,7 +4309,7 @@
 
             <div class="callout callout-why">
                 <span class="callout-label">How the two work together</span>
-                <p>For most additional rate taxpayers, the most valuable strategy is typically not "pension vs ISA" but "pension and ISA". Pensions capture the high-rate tax relief at contribution. ISAs preserve flexibility and pre-retirement access. Together they form the two-pot system that supports both the early retirement window (Chapter 5, Step 3) and long-horizon wealth compounding.</p>
+                <p>For most additional rate taxpayers, the most valuable strategy is typically not "pension vs ISA" but "pension and ISA". Pensions capture the high-rate tax relief at contribution. ISAs preserve flexibility and pre-retirement access. Together they form the two-pot system that supports both the early retirement window (Chapter 9) and long-horizon wealth compounding.</p>
             </div>
 
             <h2>What Additional Rate Taxpayers Typically Review Each Year</h2>
@@ -4236,31 +4350,27 @@
 
         
 <article class="chapter" id="chapter-8">
-            <span class="chapter-kicker">Chapter 10 · Closing</span>
+            <span class="chapter-kicker">Closing</span>
             <h1>Conclusion &amp; <span class="accent">Next Steps</span></h1>
             <p class="chapter-lede">Financial planning at the additional rate is rarely about a single decision. It is about how decisions interact, across tax years, across household members, across legislation that changes underneath the plan. This guide has mapped that landscape. The remaining question is how to act on it.</p>
 
             <h2>The core thesis of this guide</h2>
 
-            <p>Eight chapters, one underlying idea: at higher incomes, the most valuable planning work is not about finding the single best product, the single best wrapper, or the single best timing decision. It is about building a structure in which those decisions compound rather than cancel each other out.</p>
+            <p>Sixteen chapters, one underlying idea: at higher incomes, the most valuable planning work is not about finding the single best product, wrapper or timing decision. It is about building a structure in which those decisions compound rather than cancel each other out.</p>
 
-            <p>The 60% tax band (Chapter 1) sets the context: there is a specific marginal rate most people never hear about, and it is the single most consequential band in UK personal tax for additional rate taxpayers. Everything that follows interacts with it.</p>
+            <p><strong>The tax picture (Chapters 1 and 2).</strong> The 60% band and frozen thresholds set the context. Fiscal drag is doing more work than any single tax rise.</p>
 
-            <p>The tax landscape (Chapter 2) shows that frozen thresholds and rising dividend rates are quietly reshaping what a passive plan looks like. Fiscal drag is doing more work than any single tax rise ever could.</p>
+            <p><strong>The groundwork (Chapters 3 and 4).</strong> Cash reserves, mortgage structure and protection keep the rest of the plan operable if income is interrupted.</p>
 
-            <p>Cash reserves and debt management (Chapter 3) are the groundwork. Mortgage strategy, emergency reserves, and decisions like overpayment vs pension contribution typically matter more for long-term outcomes than most individual investment choices that follow.</p>
+            <p><strong>Building the pension (Chapters 5 and 6).</strong> The annual allowance moves with income, and the wrapper chosen for each pound decides how it is taxed for decades.</p>
 
-            <p>Protection (Chapter 4) is the foundation that the rest of the plan rests on. Retirement income, wealth accumulation and inheritance planning all assume a continuity of health and life that cannot be taken for granted, particularly at income levels where the gap between earnings and replaceable assets is largest.</p>
+            <p><strong>Drawing it down (Chapters 7 to 11).</strong> Income layering, longevity, the early-retirement window, sustainable withdrawals and the multi-vehicle drawdown order all operate together.</p>
 
-            <p>Retirement planning (Chapter 5) is a seven-step system rather than a single destination. The early retirement window, the final working years, the April 2029 salary sacrifice change, the 25% tax-free lump sum, income layering, sequencing, and later-life care planning all operate together. Isolated optimisation rarely produces better outcomes than coordinated design.</p>
+            <p><strong>Joining it up (Chapters 12 and 13).</strong> The eleven common mistakes, and what coordination is worth in figures.</p>
 
-            <p>Estate, IHT, Wills and LPAs (Chapter 6) has been reshaped by two legislative changes, the April 2027 pension IHT change and the April 2026 Business Relief cap, that jointly alter planning assumptions that have held for decades. Wills and Lasting Powers of Attorney are foundational legal documents that sit beneath every other estate decision.</p>
+            <p><strong>Passing it on (Chapters 14 and 15).</strong> The April 2027 pension change, the Business Relief cap, Wills, LPAs and the specialist areas that apply to business owners, international families and multi-generational planning.</p>
 
-            <p>Investment wrappers and advanced structures (Chapter 7), from ISAs and unit trusts through to EIS, VCT and FICs, are the containers in which the plan is built. Their interaction with tax rules, with access needs, and with each other is where most net-outcome differences between similar investors arise.</p>
-
-            <p>Specialist planning areas (Chapter 8), business owner planning, international and cross-border considerations, and family and intergenerational planning, cover the technical areas most likely to apply to subsets of additional rate readers whose circumstances move beyond general planning.</p>
-
-            <p>The 25-year case study (Chapter 9) brings these threads together to show how the same starting position can produce materially different outcomes depending on structure, and why structured modelling is often where the largest value lies.</p>
+            <p><strong>The model (Chapter 16).</strong> A 25-year case study showing how the same starting position can produce materially different outcomes depending on structure.</p>
 
             <h2>Where planning often shifts from DIY to structured</h2>
 
@@ -4320,23 +4430,25 @@
 <!-- =========================================
      SOURCES & PRIMARY REFERENCES
      ========================================= -->
-<section style="background:var(--bg-soft); border-top:1px solid var(--border-light); padding:48px 40px;">
+<section id="sources" style="background:var(--bg-soft); border-top:1px solid var(--border-light); padding:48px 40px;">
     <div style="max-width:880px; margin:0 auto;">
         <h2 style="font-family:var(--font-display); font-weight:700; font-size:22px; color:var(--navy); margin-bottom:8px;">Sources &amp; primary references</h2>
         <p style="font-size:14px; color:var(--ink-soft); margin-bottom:20px;">Key figures and legislative positions in this guide draw on the following primary sources. All readers are encouraged to verify current rules against these sources before acting.</p>
         <ol style="margin-left:20px; font-size:13px; line-height:1.7; color:var(--ink-soft);">
+            <li style="margin-bottom:6px;">HM Treasury: <a href="https://www.gov.uk/government/publications/budget-2026-document/budget-2026-html" target="_blank" rel="noopener">Budget 2026 document</a> (28 October 2026)</li>
+            <li style="margin-bottom:6px;">HMRC: <a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar" target="_blank" rel="noopener">Budget 2026: Overview of Tax Legislation and Rates</a>, with <a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/annex-a-rates-and-allowances" target="_blank" rel="noopener">Annex A: rates and allowances</a></li>
             <li style="margin-bottom:6px;">HMRC and GOV.UK: <a href="https://www.gov.uk/income-tax-rates" target="_blank" rel="noopener">Income Tax rates and Personal Allowances</a> (2026/27 bands and the £100,000 taper)</li>
-            <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/government/publications/reforming-inheritance-tax-unused-pension-funds-and-death-benefits/inheritance-tax-on-unused-pension-funds-and-death-benefits" target="_blank" rel="noopener">Inheritance Tax on unused pension funds and death benefits</a> (April 2027 change, Finance Bill 2025-26)</li>
+            <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/government/publications/reforming-inheritance-tax-unused-pension-funds-and-death-benefits/inheritance-tax-on-unused-pension-funds-and-death-benefits" target="_blank" rel="noopener">Inheritance Tax on unused pension funds and death benefits</a> (April 2027 change, Finance Act 2026)</li>
             <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/government/publications/salary-sacrifice-reform-for-pension-contributions-effective-from-6-april-2029/salary-sacrifice-reform-for-pension-contributions" target="_blank" rel="noopener">Salary sacrifice reform for pension contributions from 6 April 2029</a></li>
             <li style="margin-bottom:6px;">House of Commons Library: <a href="https://commonslibrary.parliament.uk/research-briefings/cbp-10423/" target="_blank" rel="noopener">National Insurance Contributions (Employer Pensions Contributions) Bill</a></li>
             <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/government/publications/changes-to-agricultural-property-relief-and-business-property-relief/agricultural-property-relief-and-business-property-relief-changes" target="_blank" rel="noopener">Agricultural Property Relief and Business Property Relief changes from 6 April 2026</a></li>
-            <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/government/publications/the-new-state-pension" target="_blank" rel="noopener">The new State Pension</a> (including the £241.30/week figure for 2026/27)</li>
+            <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/new-state-pension" target="_blank" rel="noopener">The new State Pension</a> (including the £241.30/week figure for 2026/27)</li>
             <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/tax-on-your-private-pension/annual-allowance" target="_blank" rel="noopener">Pension Annual Allowance, tapered Annual Allowance, and MPAA</a></li>
             <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/inheritance-tax" target="_blank" rel="noopener">Inheritance Tax, nil-rate band and residence nil-rate band</a></li>
             <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/capital-gains-tax/rates" target="_blank" rel="noopener">Capital Gains Tax rates and Business Asset Disposal Relief</a></li>
             <li style="margin-bottom:6px;">GOV.UK: <a href="https://www.gov.uk/individual-savings-accounts" target="_blank" rel="noopener">Individual Savings Accounts (ISA) allowance</a></li>
         </ol>
-        <p style="font-size:12px; color:var(--ink-muted); margin-top:18px;">Sources accessed April 2026 and reflect legislation as announced up to the 2025 Autumn Budget. Tax rules evolve; always verify current figures before taking action.</p>
+        <p style="font-size:12px; color:var(--ink-muted); margin-top:18px;">Sources accessed 28 October 2026 and reflect legislation and announcements up to the Budget of 28 October 2026. Tax rules evolve; always verify current figures before taking action.</p>
     </div>
 </section>
 
@@ -4351,7 +4463,10 @@
             </div>
             <h2>Planning that fits your whole picture</h2>
             <p>TrustEvo is a UK introductions service that introduces individuals to FCA-regulated financial advisers for an initial, no-obligation conversation.</p>
-            <a href="https://www.trustevo.co.uk" class="btn-primary">Visit trustevo.co.uk</a>
+            <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+                <a href="https://www.trustevo.co.uk" class="btn-primary">Visit trustevo.co.uk</a>
+                <a class="pdf-btn pdf-btn-lg" href="The-45-Club-2026-27.pdf?v=202610281521" download="The-45-Club-2026-27.pdf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg><span class="pdf-label-long">Save this guide as a PDF</span></a>
+            </div>
         </div>
         <div class="footer-legal">
             <p><strong style="color:white;">Important information: please read</strong></p>
@@ -4359,7 +4474,7 @@
             <p>TrustEvo is not authorised or regulated by the Financial Conduct Authority and does not provide financial advice, tax advice or investment advice. Any investment decisions should be made after consulting an FCA-regulated financial adviser.</p>
             <p>Tax treatment depends on individual circumstances and may change. Investment values can go down as well as up. Individuals may get back less than they invest.</p>
             <p>References to tax-efficient structures are illustrative; suitability depends on personal circumstances and must be assessed by a regulated adviser. Worked examples use simplifying assumptions and are not forecasts.</p>
-            <p>Figures quoted in this guide are based on UK legislation and HMRC thresholds applicable for the 2026/27 tax year and reflect legislated changes announced up to the 2025 Autumn Budget. Legislation may be amended or replaced; always confirm current figures against primary sources before acting.</p>
+            <p>Figures quoted in this guide are based on UK legislation and HMRC thresholds applicable for the 2026/27 tax year and reflect changes announced up to the Budget of 28 October 2026. Legislation may be amended or replaced; always confirm current figures against primary sources before acting.</p>
             <p>TrustEvo is a trading name of Nuvevo Ltd (registered in England and Wales, company number 16802797).</p>
             <p style="margin-top:24px; font-size:12px; color:rgba(255,255,255,0.4);">© 2026 TrustEvo. The 45% Club, 2026/27 Edition.</p>
         </div>
@@ -4627,6 +4742,43 @@
     wireCalc(['calc-iht-value','calc-iht-age','calc-iht-band'], updateCalcIHT);
     wireCalc(['calc-sus-pot','calc-sus-withdrawal','calc-sus-return','calc-sus-inflation'], updateCalcSustain);
 
+    // Printing from the browser menu: load lazy images first so photos appear
+    window.addEventListener('beforeprint', function() {
+        document.querySelectorAll('img[loading="lazy"]').forEach(function(img){ img.loading = 'eager'; });
+    });
+</script>
+
+
+<!-- TrustEvo readability layer: larger text on phones and laptops (screen only) -->
+<style id="te-readability">
+@media screen {
+  body { font-size: 19px !important; line-height: 1.72 !important; }
+  .chapter-lede, .lede { font-size: 1.18em !important; line-height: 1.6 !important; }
+}
+@media screen and (max-width: 640px) {
+  body { font-size: 18px !important; }
+}
+</style>
+<script id="te-readability-js">
+(function () {
+  function lift() {
+    if (!window.matchMedia || !window.matchMedia('screen').matches) return;
+    var root = document.querySelector('main') || document.body;
+    var els = root.querySelectorAll('p, li, td, th, span, div, a, small, figcaption, label, dt, dd, strong, em');
+    for (var i = 0; i < els.length; i++) {
+      var e = els[i];
+      if (e.closest('svg, script, style, .topnav, .mobile-toc, .sidebar')) continue;
+      var own = false;
+      for (var c = e.firstChild; c; c = c.nextSibling) { if (c.nodeType === 3 && c.textContent.trim().length > 1) { own = true; break; } }
+      if (!own) continue;
+      var cs = getComputedStyle(e), fs = parseFloat(cs.fontSize);
+      var label = cs.textTransform === 'uppercase' || parseFloat(cs.letterSpacing) > 0.6;
+      var min = label ? 13 : 15.5;
+      if (fs < min) { e.style.fontSize = min + 'px'; e.setAttribute('data-te-rs', '1'); }
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', lift); else lift();
+})();
 </script>
 
 </body>
