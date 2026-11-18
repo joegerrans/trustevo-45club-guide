@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "source": "/pdf",
+      "destination": "/The-45-Club-2026-27.pdf",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.pdf",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
